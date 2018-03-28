@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nfe-api-client", "nfe-api-client\nfe-api-client.csproj", "{067714BC-FBDF-47CF-BE46-0AA738C8CC83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{88E04B58-3160-4A0C-ACDE-B8C52032DA9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{067714BC-FBDF-47CF-BE46-0AA738C8CC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067714BC-FBDF-47CF-BE46-0AA738C8CC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067714BC-FBDF-47CF-BE46-0AA738C8CC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067714BC-FBDF-47CF-BE46-0AA738C8CC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E04B58-3160-4A0C-ACDE-B8C52032DA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E04B58-3160-4A0C-ACDE-B8C52032DA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E04B58-3160-4A0C-ACDE-B8C52032DA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E04B58-3160-4A0C-ACDE-B8C52032DA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C77F5070-C326-4F0F-B057-5680BABF7D2E}
+	EndGlobalSection
+EndGlobal
