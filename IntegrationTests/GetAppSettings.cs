@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 
-namespace IntegrationTests
+namespace Tests.IntegrationTests
 {
     public class GetAppSettings
     {

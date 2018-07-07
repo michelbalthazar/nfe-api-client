@@ -2,14 +2,14 @@ using nfe.api.client.Domain.Models;
 using System;
 using Xunit;
 
-namespace IntegrationTests
+namespace Tests.IntegrationTests
 {
     public class InvoiceClient
     {
         private readonly GetAppSettings _settingsApp = new GetAppSettings();
 
         [Fact]
-        public void PostAsync_WhenSendValidJson_ReturnOk()
+        public void PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // arrange
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
