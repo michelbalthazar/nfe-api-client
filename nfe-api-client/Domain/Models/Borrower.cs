@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace nfe.api.client.Domain.Models
+namespace ServiceInvoice.Domain.Models
 {
     /// <summary>
     /// <summary>Tomador do serviço</summary>

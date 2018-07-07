@@ -1,8 +1,8 @@
-﻿using nfe.api.client.Domain.Models;
+﻿using ServiceInvoice.Domain.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace nfe.api.client.Domain.Interfaces
+namespace ServiceInvoice.Domain.Interfaces
 {
     interface IServiceInvoiceClient
     {

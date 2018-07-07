@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Err = System.Tuple<string, System.Collections.Generic.IList<string>>;
 
-namespace nfe.api.client.Domain.Common
+namespace ServiceInvoice.Domain.Common
 {
     /// <summary>
     /// Assists with the validation of input arguments and enforcing of business rules.

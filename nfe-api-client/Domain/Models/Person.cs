@@ -1,8 +1,8 @@
-﻿using FisTech.Foundation;
+﻿using Brazil.Data;
 using System;
 using System.Text.RegularExpressions;
 
-namespace nfe.api.client.Domain.Models
+namespace ServiceInvoice.Domain.Models
 {
     public class Person
     {
@@ -39,7 +39,7 @@ namespace nfe.api.client.Domain.Models
         {
             return taxNumber > 0 &&
                    Cnpj.Validate(taxNumber) &&
-                   CheckLegalFederalTaxNumber.Value.IsMatch(taxNumber.ToString(Cnpj.NewFormat));
+                   CheckLegalFederalTaxNumber.Value.IsMatch(taxNumber.ToString(Cnpj.Format));
         }
 
         public bool IsLegalPerson()

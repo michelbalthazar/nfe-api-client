@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\nfe-api-client\nfe-api-client.csproj" />
+    <ProjectReference Include="..\nfe-api-client\ServiceInvoice.csproj" />
   </ItemGroup>
 
 </Project>

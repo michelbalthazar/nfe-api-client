@@ -1,5 +1,4 @@
-using nfe.api.client.Domain.Models;
-using System;
+using ServiceInvoice.Domain.Models;
 using Xunit;
 
 namespace Tests.IntegrationTests

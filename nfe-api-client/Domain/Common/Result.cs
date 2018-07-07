@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace nfe.api.client.Domain.Common
+namespace ServiceInvoice.Domain.Common
 {
     public enum ResultStatusCode
     {

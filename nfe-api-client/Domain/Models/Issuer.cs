@@ -1,4 +1,4 @@
-﻿namespace nfe.api.client.Domain.Models
+﻿namespace ServiceInvoice.Domain.Models
 {
     /// <summary>
     /// Emitente da NFS-e
