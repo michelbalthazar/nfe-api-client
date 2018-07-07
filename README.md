@@ -1,2 +1,2 @@
 # nfe-api-client
-It is demo about nfe's nfse-api implementation.
+It is nfe.io's nfse API implementation example
