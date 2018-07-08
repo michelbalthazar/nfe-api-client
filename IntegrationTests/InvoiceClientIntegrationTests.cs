@@ -17,7 +17,6 @@ namespace Tests.IntegrationTests
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
             var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
             var client = new InvoiceClient();
-            //var invoice = new InvoiceService(client);
             var item = new Invoice
             {
                 CityServiceCode = "3093",
