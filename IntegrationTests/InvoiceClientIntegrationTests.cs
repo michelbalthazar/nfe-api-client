@@ -1,4 +1,7 @@
+using nfe.api.client.Infraestructure;
+using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests.IntegrationTests
@@ -8,12 +11,12 @@ namespace Tests.IntegrationTests
         private readonly GetAppSettings _settingsApp = new GetAppSettings();
 
         [Fact]
-        public void PostAsync_WhenSendValidJson_ReturnsOk()
+        public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // arrange
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
             var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            //var client = new ServiceInvoicesClient();
+            var client = new InvoiceClient();
             //var invoice = new InvoiceService(client);
             var item = new Invoice
             {
@@ -33,8 +36,7 @@ namespace Tests.IntegrationTests
                         Number = "S/N",
                         AdditionalInformation = "QUADRA 01 BLOCO G",
                         District = "Asa Sul",
-                        CityCode = "5300108",
-                        CityName = "Brasilia",
+                        City = new City { CityCode = "5300108", CityName = "Brasilia" },
                         State = "DF"
                     },
                 },
@@ -42,10 +44,11 @@ namespace Tests.IntegrationTests
             };
 
             // act
-            //var result = await invoice.Create(companyIdSP, apiKey, item);
+            var result = await client.PostAsync(companyIdSP, apiKey, item);
 
             // asser
-            //Assert.NotNull(result);
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
         }
     }
 }
