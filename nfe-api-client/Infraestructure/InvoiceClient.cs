@@ -2,7 +2,10 @@
 using ServiceInvoice.Domain.Interfaces;
 using ServiceInvoice.Domain.Models;
 using System;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,12 +18,21 @@ namespace nfe.api.client.Infraestructure
         public InvoiceClient(HttpClient httpClient = null)
         {
             _httpClient = httpClient ?? new HttpClient();
-        }
-        public Task<Result<Invoice>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken)
-        {
-            var err = new ErrorBuilder();
+            _httpClient.BaseAddress = new Uri("http://api.nfe.io");
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            return null;
+        }
+
+        public async Task<Result<Invoice>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var url = $"/v1/companies/{company_id}/serviceinvoices";
+            _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
+
+            var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
+
+            var result = await HttpResponseCheck.ResponseValidate(response);
+
+            return result;
         }
 
         public Task<Result<Invoice>> GetOneAsync(string company_id, string id, CancellationToken cancellationToken)
