@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tests.IntegrationTests
 {
-    public class InvoiceClient
+    public class InvoiceClientIntegrationTests
     {
         private readonly GetAppSettings _settingsApp = new GetAppSettings();
 
