@@ -4,6 +4,7 @@ namespace ServiceInvoice.Domain.Common
 {
     public enum ResultStatusCode
     {
+        Unauthorized = -13,
         UnprocessableEntity = -12,
         NotImplemented = -11,
         InvalidPage = -10,
