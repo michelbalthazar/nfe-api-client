@@ -27,8 +27,7 @@ namespace Tests.UnitTests
                         Number = "S/N",
                         AdditionalInformation = "QUADRA 01 BLOCO G",
                         District = "Asa Sul",
-                        CityCode = "5300108",
-                        CityName = "Brasilia",
+                        City = new City { CityCode = "5300108", CityName = "Brasilia" },
                         State = "DF"
                     },
                 },

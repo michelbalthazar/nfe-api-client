@@ -1,12 +1,7 @@
 ﻿namespace ServiceInvoice.Domain.Models
 {
-    public class Address
+    public class City
     {
-        /// <summary>
-        /// Estado
-        /// </summary>
-        public string State { get; set; }
-
         /// <summary>
         /// Nome da Cidade
         /// </summary>
@@ -16,6 +11,18 @@
         /// Código IBGE da Cidade
         /// </summary>
         public string CityCode { get; set; }
+    }
+    public class Address
+    {
+        /// <summary>
+        /// Estado
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Nome e Código (IBGE) da cidade
+        /// </summary>
+        public City City { get; set; }
 
         /// <summary>
         /// Bairro (xBairro)

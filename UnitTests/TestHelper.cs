@@ -17,7 +17,6 @@ namespace Tests.UnitTests
         public static string apiKey = "apiKeyToTest";
         #endregion
 
-
         public static Mock<HttpClient> CreateMockHttp(string response, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var responseMessage = new Mock<HttpResponseMessage>();
@@ -99,8 +98,8 @@ namespace Tests.UnitTests
             Assert.Equal(expect.Name, actual.Name);
             Assert.Equal(expect.Type, actual.Type);
             Assert.Equal(expect.Address.AdditionalInformation, actual.Address.AdditionalInformation);
-            Assert.Equal(expect.Address.CityCode, actual.Address.CityCode);
-            Assert.Equal(expect.Address.CityName, actual.Address.CityName);
+            Assert.Equal(expect.Address.City.CityCode, actual.Address.City.CityCode);
+            Assert.Equal(expect.Address.City.CityName, actual.Address.City.CityName);
             Assert.Equal(expect.Address.Country, actual.Address.Country);
             Assert.Equal(expect.Address.District, actual.Address.District);
             Assert.Equal(expect.Address.Number, actual.Address.Number);
@@ -119,8 +118,8 @@ namespace Tests.UnitTests
             Assert.Equal(expect.Name, actual.Name);
             Assert.Equal(expect.Type, actual.Type);
             Assert.Equal(expect.Address.AdditionalInformation, actual.Address.AdditionalInformation);
-            Assert.Equal(expect.Address.CityCode, actual.Address.CityCode);
-            Assert.Equal(expect.Address.CityName, actual.Address.CityName);
+            Assert.Equal(expect.Address.City.CityCode, actual.Address.City.CityCode);
+            Assert.Equal(expect.Address.City.CityName, actual.Address.City.CityName);
             Assert.Equal(expect.Address.Country, actual.Address.Country);
             Assert.Equal(expect.Address.District, actual.Address.District);
             Assert.Equal(expect.Address.Number, actual.Address.Number);
