@@ -58,7 +58,7 @@ namespace nfe.api.client.Infraestructure
                 return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
             }
         }
-
+        
         public Task<Result<InvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
