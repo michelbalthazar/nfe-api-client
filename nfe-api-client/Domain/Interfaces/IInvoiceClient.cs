@@ -13,15 +13,15 @@ namespace ServiceInvoice.Domain.Interfaces
         /// <returns>Nota Fiscal de Serviços foi enviada com sucesso para fila de emissão</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<InvoiceResource>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken);
+        Task<Result<InvoiceResource>> PostAsync(string company_id, Invoice item, CancellationToken cancellationToken);
 
         /// <summary>Obter os detalhes de uma Nota Fiscal de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
-        /// <param name="id">ID da Nota Fiscal de Serviço (NFSE)</param>
+        /// <param name="invoiceId">ID da Nota Fiscal de Serviço (NFSE)</param>
         /// <returns>Sucesso na requisição</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<InvoiceResource>> GetOneAsync(string company_id, string id, CancellationToken cancellationToken);
+        Task<Result<InvoiceResource>> GetOneAsync(string company_id, string invoiceId, CancellationToken cancellationToken);
 
         /// <summary>Listar as Notas Fiscais de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
@@ -34,34 +34,34 @@ namespace ServiceInvoice.Domain.Interfaces
 
         /// <summary>Cancelar uma Nota Fiscal de Serviços (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
-        /// <param name="id">ID da Nota Fiscal de Serviço (NFSE)</param>
+        /// <param name="invoiceId">ID da Nota Fiscal de Serviço (NFSE)</param>
         /// <returns>Nota fiscal cancelada com sucesso</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<string>> DeleteAsync(string company_id, string id, string api_Key, CancellationToken cancellationToken);
+        Task<Result<string>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken);
 
         /// <summary>Enviar email para o Tomador com a Nota Fiscal de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
-        /// <param name="id">ID da Nota Fiscal de Serviço (NFSE)</param>
+        /// <param name="invoiceId">ID da Nota Fiscal de Serviço (NFSE)</param>
         /// <returns>Sucesso na requisição</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<string>> SendEmailAsync(string company_id, string id, CancellationToken cancellationToken);
+        Task<Result<string>> SendEmailAsync(string company_id, string invoiceId, CancellationToken cancellationToken);
 
         /// <summary>Download do PDF da Nota Fiscal de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
-        /// <param name="id">ID da Nota Fiscal de Serviço (NFSE)</param>
+        /// <param name="invoiceId">ID da Nota Fiscal de Serviço (NFSE)</param>
         /// <returns>Sucesso na requisição</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<string>> GetDocumentPdfAsync(string company_id, string id, CancellationToken cancellationToken);
+        Task<Result<string>> GetDocumentPdfAsync(string company_id, string invoiceId, CancellationToken cancellationToken);
 
         /// <summary>Download do XML da Nota Fiscal de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>
-        /// <param name="id">ID da Nota Fiscal de Serviço (NFSE)</param>
+        /// <param name="invoiceId">ID da Nota Fiscal de Serviço (NFSE)</param>
         /// <returns>Sucesso na requisição</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<Result<string>> GetDocumentXmlAsync(string company_id, string id, CancellationToken cancellationToken);
+        Task<Result<string>> GetDocumentXmlAsync(string company_id, string invoiceId, CancellationToken cancellationToken);
     }
 }
