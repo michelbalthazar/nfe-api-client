@@ -2,22 +2,35 @@ using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
 using System.Threading.Tasks;
+using Tests.UnitTests;
 using Xunit;
 
 namespace Tests.IntegrationTests
 {
     public class InvoiceClientIntegrationTests
     {
-        private readonly GetAppSettings _settingsApp = new GetAppSettings();
+        private readonly GetAppSettings _settingsApp;
+        private readonly string _companyIdSP;
+        private readonly InvoiceClient _client;
+        private readonly string _invoiceId;
+        private string _pathToSave;
+
+        public InvoiceClientIntegrationTests()
+        {
+            _settingsApp = new GetAppSettings();
+            _companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
+            _invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
+            _pathToSave = _settingsApp.Configuration["Authentication:Path"];
+
+            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
+            _client = new InvoiceClient(apiKey);
+        }
 
         [Trait("Integration Tests", "InvoiceClient - PostAsync")]
         [Fact(DisplayName = "PostAsync when send a invoice valid return OK")]
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
-            // arrange
-            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
-            var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            var client = new InvoiceClient(apiKey);
+            // Arrange
             var item = new Invoice
             {
                 CityServiceCode = "3093",
@@ -43,10 +56,10 @@ namespace Tests.IntegrationTests
 
             };
 
-            // act
-            var result = await client.PostAsync(companyIdSP, item);
+            // Act
+            var result = await _client.PostAsync(_companyIdSP, item);
 
-            // asser
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(ResultStatusCode.OK, result.Status);
         }
@@ -55,16 +68,12 @@ namespace Tests.IntegrationTests
         [Fact(DisplayName = "GetAsync when send invoiceId valid return OK")]
         public async Task GetAsync_WhenSendInvoiceIdValid_ReturnsOk()
         {
-            // arrange
-            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
-            var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            var invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
-            var client = new InvoiceClient(apiKey);
+            // Arrange
 
-            // act
-            var result = await client.GetOneAsync(companyIdSP, invoiceId);
+            // Act
+            var result = await _client.GetOneAsync(_companyIdSP, _invoiceId);
 
-            // asser
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(ResultStatusCode.OK, result.Status);
         }
@@ -73,18 +82,36 @@ namespace Tests.IntegrationTests
         [Fact(DisplayName = "DeleteAsync when send invoiceId valid return OK")]
         public async Task DeleteAsync_WhenSendInvoiceIdValid_ReturnsOk()
         {
-            // arrange
-            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
-            var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            var invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
-            var client = new InvoiceClient(apiKey);
+            // Arrange
 
-            // act
-            var result = await client.DeleteAsync(companyIdSP, invoiceId);
+            // Act
+            var result = await _client.DeleteAsync(_companyIdSP, _invoiceId);
 
-            // asser
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(ResultStatusCode.OK, result.Status);
+        }
+
+        [Trait("Integration Tests", "InvoiceClient - GetDocumentPdfAsync")]
+        [Fact(DisplayName = "GetDocumentPdfAsync when send invoiceId valid return ok and save pdf file")]
+        public async Task GetDocumentPdfAsync_WhenSendInvoiceIdValid_ReturnsOk()
+        {
+            // Arrange
+
+            // Act
+            var result = await _client.GetDocumentPdfBytesAsync(_companyIdSP, _invoiceId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
+
+            // save to see pdf
+            TestHelper.GeneratePdf(result.ValueAsSuccess, _invoiceId, _pathToSave);
+
+            // Assert
+            byte[] bytes = System.IO.File.ReadAllBytes($"{_pathToSave}\\nfe-io.pdf");
+
+            Assert.Equal(bytes, result.ValueAsSuccess);
         }
     }
 }
