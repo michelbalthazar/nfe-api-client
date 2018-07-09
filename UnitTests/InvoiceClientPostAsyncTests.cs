@@ -10,13 +10,13 @@ using Xunit;
 
 namespace Tests.UnitTests
 {
-    public class InvoiceClientTests
+    public class InvoiceClientPostAsyncTests
     {
         private readonly string _invoiceResourceOk;
         private readonly InvoiceResource _invoiceToAssert;
         private readonly Invoice _invoiceToRequest;
 
-        public InvoiceClientTests()
+        public InvoiceClientPostAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             _invoiceToAssert = InvoiceResource.FromJson(_invoiceResourceOk);
@@ -31,10 +31,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, _invoiceToAssert.ToJson());
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -49,10 +49,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpGet("testToException");
 
-            var invoiceClient = new InvoiceClient(mockHttp.Object);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp.Object);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -67,10 +67,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.BadRequest);
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -84,10 +84,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.Unauthorized);
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient("InvalidApiKey", mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, "Invalid", _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -101,10 +101,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.RequestTimeout);
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -118,10 +118,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.InternalServerError);
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
@@ -141,10 +141,10 @@ namespace Tests.UnitTests
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: status);
 
-            var invoiceClient = new InvoiceClient(mockHttp);
+            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
-            var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, _invoiceToRequest, CancellationToken.None);
+            var result = await invoiceClient.PostAsync(TestHelper.companyId, _invoiceToRequest, CancellationToken.None);
 
             // Assert
             Assert.NotNull(result);
