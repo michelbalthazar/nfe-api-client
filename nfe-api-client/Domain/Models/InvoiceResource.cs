@@ -181,9 +181,9 @@ namespace ServiceInvoice.Domain.Models
             return JsonConvert.SerializeObject(this);
         }
 
-        public static Invoice FromJson(string data)
+        public static InvoiceResource FromJson(string data)
         {
-            return JsonConvert.DeserializeObject<Invoice>(data);
+            return JsonConvert.DeserializeObject<InvoiceResource>(data);
         }
     }
 
