@@ -10,7 +10,8 @@ namespace Tests.IntegrationTests
     {
         private readonly GetAppSettings _settingsApp = new GetAppSettings();
 
-        [Fact]
+        [Trait("Integration Tests", "InvoiceClient - PostAsync")]
+        [Fact(DisplayName = "PostAsync when send a invoice valid return OK")]
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // arrange
@@ -22,7 +23,7 @@ namespace Tests.IntegrationTests
                 CityServiceCode = "3093",
                 Description = "TESTE EMISSAO",
                 ServicesAmount = 0.01,
-                Borrower = new Borrower
+                Borrower = new Person
                 {
                     FederalTaxNumber = 191,
                     Name = "BANCO DO BRASIL SA",
