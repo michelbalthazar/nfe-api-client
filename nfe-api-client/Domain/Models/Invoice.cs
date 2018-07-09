@@ -5,13 +5,13 @@ namespace ServiceInvoice.Domain.Models
     public class Invoice
     {
         /// <summary>
-        /// Emitente da NFS-e
+        /// Prestador dos serviços
         /// </summary>
-        public LegalPerson Issuer { get; set; }
+        public LegalPerson Provider { get; set; }
         /// <summary>
-        /// <summary>Tomador do serviço</summary>
+        /// Tomador dos serviços 
         /// </summary>
-        public Borrower Borrower { get; set; }
+        public Person Borrower { get; set; }
         /// <summary>
         /// Código municipal do serviço prestado (cada cidade possuí sua tabela)
         /// </summary>

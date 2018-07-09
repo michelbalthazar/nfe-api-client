@@ -1,4 +1,5 @@
 ﻿using Brazil.Data;
+using Newtonsoft.Json;
 using System;
 using System.Text.RegularExpressions;
 
@@ -72,15 +73,14 @@ namespace ServiceInvoice.Domain.Models
             return (this.Type & PersonType.LegalEntity) == PersonType.LegalEntity;
         }
 
-        public Borrower ToBorrower()
+        public string ToJson()
         {
-            return new Borrower()
-            {
-                Name = this.Name,
-                FederalTaxNumber = this.FederalTaxNumber.GetValueOrDefault(),
-                Email = this.Email,
-                Address = this.Address
-            };
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public static Borrower FromJson(string data)
+        {
+            return JsonConvert.DeserializeObject<Borrower>(data);
         }
         #endregion helpers methods
     }
