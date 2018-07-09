@@ -1,5 +1,6 @@
 using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -14,9 +15,9 @@ namespace Tests.UnitTests
         {
             // Arrange
             var invoice = GenerateInvoiceToTest.Invoice();
-            var mockHttp = TestHelper.CreateMockHttp(invoice.ToJson());
+            var mockHttp = TestHelper.CreateMockHttpPost(invoice.ToJson(), HttpMethod.Post);
 
-            var invoiceClient = new InvoiceClient(mockHttp.Object);
+            var invoiceClient = new InvoiceClient(mockHttp);
 
             // Act
             var result = await invoiceClient.PostAsync(TestHelper.companyId, TestHelper.apiKey, invoice, CancellationToken.None);

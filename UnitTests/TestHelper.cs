@@ -3,6 +3,7 @@ using ServiceInvoice.Domain.Models;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,14 @@ namespace Tests.UnitTests
         public static string apiKey = "apiKeyToTest";
         #endregion
 
-        public static Mock<HttpClient> CreateMockHttp(string response, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        private static HttpResponseMessage Success(string content)
+        {
+            var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            response.Content = new StringContent(content);
+            return response;
+        }
+
+        public static Mock<HttpClient> CreateMockHttpGet(string response, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var responseMessage = new Mock<HttpResponseMessage>();
             responseMessage.Object.StatusCode = httpStatusCode;
@@ -29,11 +37,26 @@ namespace Tests.UnitTests
 
             return mockHttpClient;
         }
+
+        public static HttpClient CreateMockHttpPost(string response, HttpMethod httpMethod, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var handler = new FakeHttpMessageHandler(response, httpMethod, httpStatusCode);
+
+            var mockHttpClient = new Mock<HttpClient>(handler);
+
+            return new HttpClient(handler);
+        }
     }
     #region class to helper mock httpClient
+
     public class FakeHttpMessageHandler : HttpMessageHandler
     {
         private HttpResponseMessage response;
+
+        public FakeHttpMessageHandler(string response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
+        {
+            this.response = SendAsync(response, httpMethod, httpStatusCode);
+        }
 
         public FakeHttpMessageHandler(HttpResponseMessage response)
         {
@@ -46,6 +69,11 @@ namespace Tests.UnitTests
             responseTask.SetResult(response);
 
             return responseTask.Task;
+        }
+
+        public virtual HttpResponseMessage SendAsync(string response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
+        {
+            return new HttpResponseMessage(httpStatusCode) { RequestMessage = new HttpRequestMessage(httpMethod, "http://sample/test"), Content = new StringContent(response) };
         }
     }
 
@@ -66,7 +94,7 @@ namespace Tests.UnitTests
 
         protected override bool TryComputeLength(out long length)
         {
-            length = Content?.Length ?? 0;
+            length = Content.Length;
             return true;
         }
     }
