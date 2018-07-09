@@ -3,7 +3,7 @@
     /// <summary>
     /// Emitente da NFS-e
     /// </summary>
-    public class Issuer : Person
+    public class LegalPerson : Person
     {
         /// <summary>
         /// Nome Fantasia (esse nome será usado no assunto do e-mail)
@@ -24,5 +24,7 @@
         /// Regime especial de tributação
         /// </summary>
         public SpecialTaxRegime SpecialTaxRegime { get; set; }
+
+        public 
     }
 }

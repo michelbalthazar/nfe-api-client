@@ -7,7 +7,7 @@ namespace ServiceInvoice.Domain.Models
         /// <summary>
         /// Emitente da NFS-e
         /// </summary>
-        public Issuer Issuer { get; set; }
+        public LegalPerson Issuer { get; set; }
         /// <summary>
         /// <summary>Tomador do serviço</summary>
         /// </summary>
