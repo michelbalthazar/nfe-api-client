@@ -1,0 +1,92 @@
+{
+    "id": "5b435ec911aeda09c488ee39",
+    "environment": "Development",
+    "flowStatus": "WaitingCalculateTaxes",
+    "provider": {
+        "tradeName": "Michel Teste LTDA",
+        "taxRegime": "LucroReal",
+        "specialTaxRegime": "Automatico",
+        "legalNature": "SociedadeEconomiaMista",
+        "economicActivities": [],
+        "regionalTaxNumber": 0,
+        "municipalTaxNumber": "14177687",
+        "issRate": 0.0,
+        "parentId": "54244a1be340420fdc94ab59",
+        "id": "5b435dcc61beca0d3ca1f058",
+        "name": "Michel Balthazar EPP",
+        "federalTaxNumber": 5893631000281,
+        "address": {
+            "country": "",
+            "postalCode": "05416-000",
+            "street": "Rua Fradique Coutinho",
+            "number": "701",
+            "additionalInformation": "",
+            "district": "Pinheiros",
+            "city": {
+                "code": "3550308",
+                "name": "São Paulo"
+            },
+            "state": "SP"
+        },
+        "status": "Active",
+        "type": "LegalPerson, Company",
+        "createdOn": "2018-07-09T13:06:20.7726206+00:00",
+        "modifiedOn": "2018-07-09T13:06:20.7726206+00:00"
+    },
+    "borrower": {
+        "taxRegime": 0,
+        "legalNature": 0,
+        "economicActivities": [],
+        "issRate": 0.0,
+        "name": "BANCO DO BRASIL SA",
+        "federalTaxNumber": 191,
+        "email": "email@remetente",
+        "address": {
+            "country": "BRA",
+            "postalCode": "70073901",
+            "street": "Outros Quadra 1 Bloco G Lote 32",
+            "number": "S/N",
+            "additionalInformation": "QUADRA 01 BLOCO G",
+            "district": "Asa Sul",
+            "city": {
+                "code": "5300108",
+                "name": "Brasilia"
+            },
+            "state": "DF"
+        },
+        "status": "Active",
+        "type": "LegalPerson",
+        "createdOn": "2018-07-09T13:10:33.0500119+00:00"
+    },
+    "createdOn": "2018-07-09T13:10:33.0500119+00:00",
+    "issuedOn": "2018-07-09T10:10:33.0656364-03:00",
+    "batchNumber": 0,
+    "number": 0,
+    "status": "Created",
+    "rpsType": "Rps",
+    "rpsStatus": "Normal",
+    "taxationType": "WithinCity",
+    "rpsSerialNumber": "IO",
+    "rpsNumber": 0,
+    "cityServiceCode": "3093",
+    "description": "TESTE EMISSAO",
+    "servicesAmount": 0.01,
+    "deductionsAmount": 0.0,
+    "discountUnconditionedAmount": 0.0,
+    "discountConditionedAmount": 0.0,
+    "baseTaxAmount": 0.01,
+    "issRate": 0.0,
+    "irAmountWithheld": 0.0,
+    "pisAmountWithheld": 0.0,
+    "cofinsAmountWithheld": 0.0,
+    "csllAmountWithheld": 0.0,
+    "inssAmountWithheld": 0.0,
+    "issAmountWithheld": 0.0,
+    "othersAmountWithheld": 0.0,
+    "amountWithheld": 0.0,
+    "amountNet": 0.01,
+    "approximateTax": {
+        "totalRate": 0.0,
+        "totalAmount": 0.0
+    }
+}
