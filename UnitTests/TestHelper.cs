@@ -103,7 +103,7 @@ namespace Tests.UnitTests
     #region class validate helper
     public static class ValidateHelper
     {
-        public static void ValidateInvoice(Invoice expect, Invoice actual)
+        public static void ValidateInvoice(InvoiceResource expect, InvoiceResource actual)
         {
             Assert.NotNull(expect);
             Assert.NotNull(actual);
