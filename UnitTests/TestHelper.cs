@@ -108,7 +108,7 @@ namespace Tests.UnitTests
             Assert.Equal(expect.Address.Street, actual.Address.Street);
         }
 
-        public static void ValidateIssuer(Issuer expect, Issuer actual)
+        public static void ValidateIssuer(LegalPerson expect, LegalPerson actual)
         {
             Assert.NotNull(expect);
             Assert.NotNull(actual);
