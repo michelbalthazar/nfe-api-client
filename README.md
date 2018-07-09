@@ -8,12 +8,12 @@ It is nfe.io’s nfs-e API implementation example
 *	Now, dowload the project and set your companyId and ApiKey at IntegrationTest’s solution InvoiceClientIntegrationTests class, this class have function to issuer an invoice of test. 
 * In another moment we will go create a company through api, but it is necessary company's client implementation yet ***
 # Prerequisites
-It is necessary visual studio or visual studio code and .NET core SDK 2.1
+* It is necessary visual studio or visual studio code and .NET core SDK 2.1
 # Running the tests
-First of all, you should to create an appsettings.development.json to configure environment variables. This file should be equal the appsettings.json, use it as example. Set your companyId, ApiKey etc there.
-Open Test Explorer on IDE. It is recommended Group by Tests using Traits option.
-Run all unit Tests to check if all logical tests there are passing.
-Run All Integration tests to verify “acceptance” API test, it is recommended run one by one and debug to understand flow. This tests issuer, cancel or get an invoice etc.
+* First of all, you should to create an appsettings.development.json to configure environment variables. This file should be equal the appsettings.json, use it as example. Set your companyId, ApiKey etc there.
+* Open Test Explorer on IDE. It is recommended Group by Tests using Traits option.
+* Run all unit Tests to check if all logical tests there are passing.
+*Run All Integration tests to verify “acceptance” API test, it is recommended run one by one and debug to understand flow. This tests issuer, cancel or get an invoice etc.
 # Built With
 *	[Visual Stuadio IDE](https://visualstudio.microsoft.com/downloads/) - The web framework used
 *	[Nuget](https://www.nuget.org/) - Dependency Management
