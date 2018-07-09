@@ -3,7 +3,6 @@ using ServiceInvoice.Domain.Models;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,12 +40,22 @@ namespace Tests.UnitTests
 
             return new HttpClient(handler);
         }
+
+        public static HttpClient CreateMockHttp(HttpMethod httpMethod, byte[] response, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var handler = new FakeHttpMessageHandler(response, httpMethod, httpStatusCode);
+
+            var mockHttpClient = new Mock<HttpClient>(handler);
+
+            return new HttpClient(handler);
+        }
         #endregion mocks
 
         #region methods
-        public static void GeneratePdf(byte[] result, string fileName, string pathToSave)
+        public static void GeneratePdf(byte[] result, string pathToSave)
         {
-            using (FileStream output = new FileStream($"{pathToSave}\\{fileName}.pdf", FileMode.Create))
+            // Set a path to save example C://fileName.pdf
+            using (FileStream output = new FileStream(pathToSave, FileMode.Create))
             {
                 Stream resultStream = new MemoryStream(result);
                 resultStream.CopyTo(output);
@@ -61,6 +70,11 @@ namespace Tests.UnitTests
         private HttpResponseMessage response;
 
         public FakeHttpMessageHandler(string response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
+        {
+            this.response = SendAsync(response, httpMethod, httpStatusCode);
+        }
+
+        public FakeHttpMessageHandler(byte[] response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
         {
             this.response = SendAsync(response, httpMethod, httpStatusCode);
         }
@@ -81,6 +95,11 @@ namespace Tests.UnitTests
         public virtual HttpResponseMessage SendAsync(string response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
         {
             return new HttpResponseMessage(httpStatusCode) { RequestMessage = new HttpRequestMessage(httpMethod, "http://sample/test"), Content = new StringContent(response) };
+        }
+
+        public virtual HttpResponseMessage SendAsync(byte[] response, HttpMethod httpMethod, HttpStatusCode httpStatusCode)
+        {
+            return new HttpResponseMessage(httpStatusCode) { RequestMessage = new HttpRequestMessage(httpMethod, "http://sample/test"), Content = new ByteArrayContent(response) };
         }
     }
 
