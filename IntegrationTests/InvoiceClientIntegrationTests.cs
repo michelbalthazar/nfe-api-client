@@ -17,7 +17,7 @@ namespace Tests.IntegrationTests
             // arrange
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
             var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            var client = new InvoiceClient();
+            var client = new InvoiceClient(apiKey);
             var item = new Invoice
             {
                 CityServiceCode = "3093",
@@ -44,7 +44,25 @@ namespace Tests.IntegrationTests
             };
 
             // act
-            var result = await client.PostAsync(companyIdSP, apiKey, item);
+            var result = await client.PostAsync(companyIdSP, item);
+
+            // asser
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
+        }
+
+        [Trait("Integration Tests", "InvoiceClient - GetAsync")]
+        [Fact(DisplayName = "GetAsync when send invoiceId valid return OK")]
+        public async Task GetAsync_WhenSendInvoiceIdValid_ReturnsOk()
+        {
+            // arrange
+            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
+            var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
+            var invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
+            var client = new InvoiceClient(apiKey);
+
+            // act
+            var result = await client.GetOneAsync(companyIdSP, invoiceId);
 
             // asser
             Assert.NotNull(result);
