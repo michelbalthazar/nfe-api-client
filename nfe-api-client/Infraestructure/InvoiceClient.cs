@@ -2,7 +2,6 @@
 using ServiceInvoice.Domain.Interfaces;
 using ServiceInvoice.Domain.Models;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -14,7 +13,6 @@ namespace nfe.api.client.Infraestructure
     public class InvoiceClient : IInvoiceClient
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiKey;
 
         public InvoiceClient(string apiKey, HttpClient httpClient = null)
         {
@@ -22,7 +20,7 @@ namespace nfe.api.client.Infraestructure
             _httpClient.BaseAddress = new Uri("http://api.nfe.io");
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
-            _apiKey = apiKey;
+            _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
         }
 
         public async Task<Result<InvoiceResource>> PostAsync(string company_id, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
@@ -30,7 +28,6 @@ namespace nfe.api.client.Infraestructure
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices";
-                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
 
                 var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
 
@@ -49,7 +46,6 @@ namespace nfe.api.client.Infraestructure
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}";
-                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
 
                 var response = await _httpClient.GetAsync(url, cancellationToken);
 
@@ -68,22 +64,21 @@ namespace nfe.api.client.Infraestructure
             throw new NotImplementedException();
         }
 
-        public async Task<Result<string>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<InvoiceResource>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}";
-                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
 
                 var response = await _httpClient.DeleteAsync(url, cancellationToken);
 
-                var result = await HttpResponseConvert<string>.ResponseReadAsStringAsync(response);
+                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
             catch (Exception ex)
             {
-                return new Result<string>(ResultStatusCode.Error, ex.Message);
+                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
             }
         }
 
@@ -92,7 +87,6 @@ namespace nfe.api.client.Infraestructure
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/pdf";
-                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
 
                 var response = await _httpClient.GetAsync(url, cancellationToken);
 
@@ -111,7 +105,6 @@ namespace nfe.api.client.Infraestructure
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/pdf";
-                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
 
                 var response = await _httpClient.GetAsync(url, cancellationToken);
 
