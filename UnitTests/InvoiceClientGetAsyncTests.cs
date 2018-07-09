@@ -19,7 +19,6 @@ namespace Tests.UnitTests
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             _invoiceToAssert = InvoiceResource.FromJson(_invoiceResourceOk);
-
         }
 
         [Trait("Unit Tests", "InvoiceClient - GetOneAsync")]
