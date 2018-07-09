@@ -7,6 +7,14 @@ namespace ServiceInvoice.Domain.Models
     public class Person
     {
         #region properties
+       
+        public string ParentId { get; set; }
+
+        /// <summary>
+        /// Código de identificação
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Nome ou Razão Social
         /// </summary>
@@ -31,11 +39,6 @@ namespace ServiceInvoice.Domain.Models
         /// Tipo da pessoa: Jurídica ou Física
         /// </summary>
         public PersonType Type { get; set; }
-
-        /// <summary>
-        /// Código de identificação
-        /// </summary>
-        public string Id { get; set; }
 
         /// <summary>
         /// Data de criação
