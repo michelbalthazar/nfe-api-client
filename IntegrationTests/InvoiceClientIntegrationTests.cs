@@ -106,10 +106,10 @@ namespace Tests.IntegrationTests
             Assert.Equal(ResultStatusCode.OK, result.Status);
 
             // save to see pdf
-            TestHelper.GeneratePdf(result.ValueAsSuccess, _invoiceId, _pathToSave);
+            TestHelper.GeneratePdf(result.ValueAsSuccess, _pathToSave);
 
             // Assert
-            byte[] bytes = System.IO.File.ReadAllBytes($"{_pathToSave}\\nfe-io.pdf");
+            byte[] bytes = System.IO.File.ReadAllBytes(_pathToSave);
 
             Assert.Equal(bytes, result.ValueAsSuccess);
         }
