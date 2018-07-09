@@ -29,7 +29,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, _invoiceToAssert.ToJson());
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, _invoiceToAssert.ToJson());
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
@@ -65,7 +65,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenSendInvalidInvoice_ReturnsBadRequest()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.BadRequest);
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, httpStatusCode: HttpStatusCode.BadRequest);
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
@@ -82,7 +82,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenSendInvalidApiKey_ReturnsUnauthorized()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.Unauthorized);
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, httpStatusCode: HttpStatusCode.Unauthorized);
 
             var invoiceClient = new InvoiceClient("InvalidApiKey", mockHttp);
 
@@ -99,7 +99,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenRequestTimeout_ReturnsTimeout()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.RequestTimeout);
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, httpStatusCode: HttpStatusCode.RequestTimeout);
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
@@ -116,7 +116,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenInternalServerError_ReturnsError()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: HttpStatusCode.InternalServerError);
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, httpStatusCode: HttpStatusCode.InternalServerError);
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
@@ -139,7 +139,7 @@ namespace Tests.UnitTests
         public async Task PostAsync_WhenHttpStatusCodeIsUnexpected_ReturnsError(HttpStatusCode status)
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttpPost(HttpMethod.Post, httpStatusCode: status);
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, httpStatusCode: status);
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 

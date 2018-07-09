@@ -33,7 +33,7 @@ namespace Tests.UnitTests
             return mockHttpClient;
         }
 
-        public static HttpClient CreateMockHttpPost(HttpMethod httpMethod, string response = "responseToTest", HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static HttpClient CreateMockHttp(HttpMethod httpMethod, string response = "responseToTest", HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var handler = new FakeHttpMessageHandler(response, httpMethod, httpStatusCode);
 
