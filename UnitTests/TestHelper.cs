@@ -42,6 +42,17 @@ namespace Tests.UnitTests
             return new HttpClient(handler);
         }
         #endregion mocks
+
+        #region methods
+        public static void GeneratePdf(byte[] result, string fileName, string pathToSave)
+        {
+            using (FileStream output = new FileStream($"{pathToSave}\\{fileName}.pdf", FileMode.Create))
+            {
+                Stream resultStream = new MemoryStream(result);
+                resultStream.CopyTo(output);
+            }
+        }
+        #endregion methods
     }
     #region class to helper mock httpClient
 

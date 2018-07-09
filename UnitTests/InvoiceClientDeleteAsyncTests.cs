@@ -26,7 +26,7 @@ namespace Tests.UnitTests
         public async Task DeleteAsync_WhenInvoiceIdIsValid_ReturnsOk()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Delete, _invoiceToAssert.ToJson());
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Delete, string.Empty);
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
