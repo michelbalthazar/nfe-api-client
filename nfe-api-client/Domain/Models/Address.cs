@@ -5,12 +5,12 @@
         /// <summary>
         /// Nome da Cidade
         /// </summary>
-        public string CityName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Código IBGE da Cidade
         /// </summary>
-        public string CityCode { get; set; }
+        public string Code { get; set; }
     }
     public class Address
     {

@@ -35,7 +35,7 @@ namespace Tests.IntegrationTests
                         Number = "S/N",
                         AdditionalInformation = "QUADRA 01 BLOCO G",
                         District = "Asa Sul",
-                        City = new City { CityCode = "5300108", CityName = "Brasilia" },
+                        City = new City { Code = "5300108", Name = "Brasilia" },
                         State = "DF"
                     },
                 },
