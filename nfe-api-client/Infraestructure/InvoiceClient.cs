@@ -62,27 +62,41 @@ namespace nfe.api.client.Infraestructure
             }
         }
 
-        public Task<Result<InvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken)
+        public Task<Result<InvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<string>> DeleteAsync(string company_id, string id, CancellationToken cancellationToken)
+        public async Task<Result<string>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}";
+                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
+
+                var response = await _httpClient.DeleteAsync(url, cancellationToken);
+
+                var result = await HttpResponseCheck.ResponseValidate(response);
+
+                return result.Status;
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(ResultStatusCode.Error, ex.Message);
+            }
+        }
+
+        public Task<Result<string>> GetDocumentPdfAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<string>> GetDocumentPdfAsync(string company_id, string id, CancellationToken cancellationToken)
+        public Task<Result<string>> GetDocumentXmlAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<string>> GetDocumentXmlAsync(string company_id, string id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result<string>> SendEmailAsync(string company_id, string id, CancellationToken cancellationToken)
+        public Task<Result<string>> SendEmailAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
