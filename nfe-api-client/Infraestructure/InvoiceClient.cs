@@ -24,14 +24,21 @@ namespace nfe.api.client.Infraestructure
 
         public async Task<Result<InvoiceResource>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var url = $"/v1/companies/{company_id}/serviceinvoices";
-            _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices";
+                _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
 
-            var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
+                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
 
-            var result = await HttpResponseCheck.ResponseValidate(response);
+                var result = await HttpResponseCheck.ResponseValidate(response);
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
+            }
         }
 
         public Task<Result<InvoiceResource>> GetOneAsync(string company_id, string id, CancellationToken cancellationToken)

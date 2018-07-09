@@ -46,15 +46,9 @@ namespace nfe.api.client.Infraestructure
             }
 
             var responseResult = await response.Content.ReadAsStringAsync();
-            try
-            {
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<InvoiceResource>(responseResult);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
-            }
+
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<InvoiceResource>(responseResult);
+            return result;
         }
     }
 }
