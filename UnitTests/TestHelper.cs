@@ -88,13 +88,12 @@ namespace Tests.UnitTests
             ValidateBorrower(expect.Borrower, actual.Borrower);
         }
 
-        public static void ValidateBorrower(Borrower expect, Borrower actual)
+        public static void ValidateBorrower(Person expect, Person actual)
         {
             Assert.NotNull(expect);
             Assert.NotNull(actual);
             Assert.Equal(expect.Email, actual.Email);
             Assert.Equal(expect.FederalTaxNumber, actual.FederalTaxNumber);
-            Assert.Equal(expect.MunicipalTaxNumber, actual.MunicipalTaxNumber);
             Assert.Equal(expect.Name, actual.Name);
             Assert.Equal(expect.Type, actual.Type);
             Assert.Equal(expect.Address.AdditionalInformation, actual.Address.AdditionalInformation);

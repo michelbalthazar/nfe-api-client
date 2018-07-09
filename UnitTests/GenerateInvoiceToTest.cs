@@ -14,7 +14,7 @@ namespace Tests.UnitTests
                 CityServiceCode = "3093",
                 Description = "TESTE EMISSAO",
                 ServicesAmount = 0.01,
-                Borrower = new Borrower
+                Borrower = new Person
                 {
                     FederalTaxNumber = 191,
                     Name = "BANCO DO BRASIL SA",
