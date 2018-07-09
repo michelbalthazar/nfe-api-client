@@ -21,6 +21,7 @@ namespace nfe.api.client.Infraestructure
             _httpClient = httpClient ?? new HttpClient();
             _httpClient.BaseAddress = new Uri("http://api.nfe.io");
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
             _apiKey = apiKey;
         }
 
@@ -33,7 +34,7 @@ namespace nfe.api.client.Infraestructure
 
                 var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
 
-                var result = await HttpResponseCheck.ResponseValidate(response);
+                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
@@ -52,7 +53,7 @@ namespace nfe.api.client.Infraestructure
 
                 var response = await _httpClient.GetAsync(url, cancellationToken);
 
-                var result = await HttpResponseCheck.ResponseValidate(response);
+                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
@@ -76,9 +77,9 @@ namespace nfe.api.client.Infraestructure
 
                 var response = await _httpClient.DeleteAsync(url, cancellationToken);
 
-                var result = await HttpResponseCheck.ResponseValidate(response);
+                var result = await HttpResponseConvert<string>.ResponseReadAsStringAsync(response);
 
-                return result.Status;
+                return result;
             }
             catch (Exception ex)
             {
@@ -86,9 +87,42 @@ namespace nfe.api.client.Infraestructure
             }
         }
 
-        public Task<Result<string>> GetDocumentPdfAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<string>> GetDocumentPdfUrlAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/pdf";
+                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
+
+                var response = await _httpClient.GetAsync(url, cancellationToken);
+
+                var result = await HttpResponseConvert<string>.ResponseReadAsByteAsync(response);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(ResultStatusCode.Error, ex.Message);
+            }
+        }
+
+        public async Task<Result<byte[]>> GetDocumentPdfBytesAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/pdf";
+                _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
+
+                var response = await _httpClient.GetAsync(url, cancellationToken);
+
+                var result = await HttpResponseConvert<byte[]>.ResponseReadAsByteAsync(response);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<byte[]>(ResultStatusCode.Error, ex.Message);
+            }
         }
 
         public Task<Result<string>> GetDocumentXmlAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
