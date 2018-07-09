@@ -6,6 +6,7 @@ namespace ServiceInvoice.Domain.Models
 {
     public class Person
     {
+        #region properties
         /// <summary>
         /// Nome ou Razão Social
         /// </summary>
@@ -30,6 +31,27 @@ namespace ServiceInvoice.Domain.Models
         /// Tipo da pessoa: Jurídica ou Física
         /// </summary>
         public PersonType Type { get; set; }
+
+        /// <summary>
+        /// Código de identificação
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Data de criação
+        /// </summary>
+        public DateTime CreatedOn { get; set; }
+        /// <summary>
+        /// Data de modificação
+        /// </summary>
+        public DateTime modifiedOn { get; set; }
+
+        /// <summary>
+        /// Status do cadastro no sistema (Ativa ou Inativa)
+        /// </summary>
+        public Status Status { get; set; }
+
+        #endregion properties
 
         #region helpers methods
         public static readonly Lazy<Regex> CheckLegalFederalTaxNumber =

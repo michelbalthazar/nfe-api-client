@@ -20,6 +20,24 @@ namespace ServiceInvoice.Domain.Models
         LegalEntity = 2,
     }
 
+    public enum Status
+    {
+        /// <summary>
+        /// Valor padrão quando estiver null
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Quando uma pessoa for deletada
+        /// </summary>
+        Inactive = 1,
+
+        /// <summary>
+        /// Quando for cadastrada
+        /// </summary>
+        Active = 2,
+    }
+
     public enum TaxRegime
     {
         [Display(Name = "Isento")]
