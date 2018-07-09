@@ -68,5 +68,23 @@ namespace Tests.IntegrationTests
             Assert.NotNull(result);
             Assert.Equal(ResultStatusCode.OK, result.Status);
         }
+
+        [Trait("Integration Tests", "InvoiceClient - DeleteAsync")]
+        [Fact(DisplayName = "DeleteAsync when send invoiceId valid return OK")]
+        public async Task DeleteAsync_WhenSendInvoiceIdValid_ReturnsOk()
+        {
+            // arrange
+            var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
+            var companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
+            var invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
+            var client = new InvoiceClient(apiKey);
+
+            // act
+            var result = await client.DeleteAsync(companyIdSP, invoiceId);
+
+            // asser
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
+        }
     }
 }
