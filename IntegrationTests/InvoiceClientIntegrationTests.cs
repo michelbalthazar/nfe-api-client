@@ -1,6 +1,8 @@
 using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Tests.UnitTests;
 using Xunit;
@@ -31,30 +33,7 @@ namespace Tests.IntegrationTests
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // Arrange
-            var item = new Invoice
-            {
-                CityServiceCode = "3093",
-                Description = "TESTE EMISSAO",
-                ServicesAmount = 0.01,
-                Borrower = new Person
-                {
-                    FederalTaxNumber = 191,
-                    Name = "BANCO DO BRASIL SA",
-                    Email = "email@remetente",
-                    Address = new Address
-                    {
-                        Country = "BRA",
-                        PostalCode = "70073901",
-                        Street = "Outros Quadra 1 Bloco G Lote 32",
-                        Number = "S/N",
-                        AdditionalInformation = "QUADRA 01 BLOCO G",
-                        District = "Asa Sul",
-                        City = new City { Code = "5300108", Name = "Brasilia" },
-                        State = "DF"
-                    },
-                },
-
-            };
+            var item = GenerateInvoiceToTest.Invoice();
 
             // Act
             var result = await _client.PostAsync(_companyIdSP, item);
@@ -83,9 +62,18 @@ namespace Tests.IntegrationTests
         public async Task DeleteAsync_WhenSendInvoiceIdValid_ReturnsOk()
         {
             // Arrange
+            var item = GenerateInvoiceToTest.Invoice();
 
             // Act
-            var result = await _client.DeleteAsync(_companyIdSP, _invoiceId);
+            var resultPost = await _client.PostAsync(_companyIdSP, item);
+
+            // waiting nfe.io's server change invoice's NotaFiscalFlowStatus property to ISSUED 
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+
+            resultPost.ValueAsSuccess.FlowStatus = NotaFiscalFlowStatus.Issued;
+
+            // Act
+             var result = await _client.DeleteAsync(_companyIdSP, resultPost.ValueAsSuccess.Id);
 
             // Assert
             Assert.NotNull(result);
