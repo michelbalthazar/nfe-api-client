@@ -23,7 +23,7 @@ namespace nfe.api.client.Infraestructure
 
         }
 
-        public async Task<Result<Invoice>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<InvoiceResource>> PostAsync(string company_id, string apiKey, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
         {
             var url = $"/v1/companies/{company_id}/serviceinvoices";
             _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
@@ -35,12 +35,12 @@ namespace nfe.api.client.Infraestructure
             return result;
         }
 
-        public Task<Result<Invoice>> GetOneAsync(string company_id, string id, CancellationToken cancellationToken)
+        public Task<Result<InvoiceResource>> GetOneAsync(string company_id, string id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<Invoice>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken)
+        public Task<Result<InvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
