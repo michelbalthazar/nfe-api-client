@@ -8,39 +8,31 @@ namespace ServiceInvoice.Domain.Models
     public class Person
     {
         #region properties
-       
         public string ParentId { get; set; }
-
         /// <summary>
         /// Código de identificação
         /// </summary>
         public string Id { get; set; }
-
         /// <summary>
         /// Nome ou Razão Social
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// CNPJ ou CPF
         /// </summary>
         public long? FederalTaxNumber { get; set; }
-
         /// <summary>
         /// Email
         /// </summary>
         public string Email { get; set; }
-
         /// <summary>
         /// Endereço
         /// </summary>
         public Address Address { get; set; }
-
         /// <summary>
         /// Tipo da pessoa: Jurídica ou Física
         /// </summary>
         public PersonType Type { get; set; }
-
         /// <summary>
         /// Data de criação
         /// </summary>
@@ -49,12 +41,10 @@ namespace ServiceInvoice.Domain.Models
         /// Data de modificação
         /// </summary>
         public DateTime modifiedOn { get; set; }
-
         /// <summary>
         /// Status do cadastro no sistema (Ativa ou Inativa)
         /// </summary>
         public Status Status { get; set; }
-
         #endregion properties
 
         #region helpers methods
@@ -78,9 +68,9 @@ namespace ServiceInvoice.Domain.Models
             return JsonConvert.SerializeObject(this);
         }
 
-        public static Borrower FromJson(string data)
+        public static Person FromJson(string data)
         {
-            return JsonConvert.DeserializeObject<Borrower>(data);
+            return JsonConvert.DeserializeObject<Person>(data);
         }
         #endregion helpers methods
     }
