@@ -2,10 +2,10 @@
 It is nfe.io’s nfs-e API implementation example
 # Getting Started
 * access https://app.nfe.io/login.
-*	Click in sign up and create yout account to test API.
+*	Click in sign up and create you account to test API.
 *	After login, click in COMPANIES and create your company to test. How it is only to test, can fill fake data, with exception Federal Tax Number (CNPJ) it should valid. To Generate a valid Federal Tax Number, access https://consulta.guru/gerador-cnpj-gratis-online/1 and click save.
 *	Next, click in WAITING tab and click on button EDIT, after ACCESS KEY. Take your companyId and ApiKey (Nota fiscal). 
-*	Now, Install the project and set your companyId and ApiKey at IntegrationTest’s solution InvoiceClientIntegrationTests class, this class have function to issuer an invoice of test. 
+*	Now, dowload the project and set your companyId and ApiKey at IntegrationTest’s solution InvoiceClientIntegrationTests class, this class have function to issuer an invoice of test. 
 * In another moment we will go create a company through api, but it is necessary company's client implementation yet ***
 # Prerequisites
 It is necessary visual studio or visual studio code and .NET core SDK 2.1
