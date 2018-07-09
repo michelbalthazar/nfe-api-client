@@ -16,15 +16,10 @@ namespace Tests.UnitTests
         #region properties to tests
         public static string companyId = "companyToTest";
         public static string apiKey = "apiKeyToTest";
+        public static string invoiceId = "invoiceToTest";
         #endregion
 
-        private static HttpResponseMessage Success(string content)
-        {
-            var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-            response.Content = new StringContent(content);
-            return response;
-        }
-
+        #region mocks
         public static Mock<HttpClient> CreateMockHttpGet(string response, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var responseMessage = new Mock<HttpResponseMessage>();
@@ -46,6 +41,7 @@ namespace Tests.UnitTests
 
             return new HttpClient(handler);
         }
+        #endregion mocks
     }
     #region class to helper mock httpClient
 
@@ -94,7 +90,7 @@ namespace Tests.UnitTests
 
         protected override bool TryComputeLength(out long length)
         {
-            length = Content.Length;
+            length = Content?.Length ?? 0;
             return true;
         }
     }
