@@ -2,6 +2,7 @@ using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Tests.UnitTests;
@@ -15,7 +16,8 @@ namespace Tests.IntegrationTests
         private readonly string _companyIdSP;
         private readonly InvoiceClient _client;
         private readonly string _invoiceId;
-        private string _pathToSave;
+        private readonly string _pathToSave;
+        private readonly string _xmlToTest;
 
         public InvoiceClientIntegrationTests()
         {
@@ -26,6 +28,8 @@ namespace Tests.IntegrationTests
 
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
             _client = new InvoiceClient(apiKey);
+
+            _xmlToTest = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
         }
 
         [Trait("Integration Tests", "InvoiceClient - PostAsync")]
@@ -100,6 +104,20 @@ namespace Tests.IntegrationTests
             byte[] bytes = System.IO.File.ReadAllBytes(_pathToSave);
 
             Assert.Equal(bytes, result.ValueAsSuccess);
+        }
+
+        [Trait("Integration Tests", "InvoiceClient - GetDocumentXmlAsync")]
+        [Fact(DisplayName = "GetDocumentXmlAsync when send invoiceId valid return ok and save xml file")]
+        public async Task GetDocumentXmlAsync_WhenSendInvoiceIdValid_ReturnsOk()
+        {
+            // Arrange
+
+            // Act
+            var result = await _client.GetDocumentXmlAsync(_companyIdSP, _invoiceId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
         }
     }
 }
