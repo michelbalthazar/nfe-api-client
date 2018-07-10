@@ -58,6 +58,18 @@ namespace nfe.api.client.Infraestructure
                 : default(T);
         }
 
+        public static async Task<Result<T>> ResponseReadAsStringAsyncRetXml(HttpResponseMessage response)
+        {
+            var validate = await ResponseValidate(response);
+
+            if (validate.Status != ResultStatusCode.OK)
+                return validate;
+
+            var responseResult = await response.Content.ReadAsStringAsync();
+
+            return new Result<T>(ResultStatusCode.OK, responseResult);
+        }
+
         public static async Task<Result<T>> ResponseReadAsByteAsync(HttpResponseMessage response)
         {
             var validate = await ResponseValidate(response);

@@ -118,9 +118,22 @@ namespace nfe.api.client.Infraestructure
             }
         }
 
-        public Task<Result<string>> GetDocumentXmlAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<string>> GetDocumentXmlAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/xml";
+
+                var response = await _httpClient.GetAsync(url, cancellationToken);
+
+                var result = await HttpResponseConvert<string>.ResponseReadAsStringAsyncRetXml(response);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(ResultStatusCode.Error, ex.Message);
+            }
         }
 
         public Task<Result<string>> SendEmailAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
