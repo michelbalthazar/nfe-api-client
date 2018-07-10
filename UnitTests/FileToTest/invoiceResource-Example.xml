@@ -1,0 +1,58 @@
+<Nfse>
+    <InfNfse>
+        <Numero>0</Numero>
+        <CodigoVerificacao>014789502251498</CodigoVerificacao>
+        <DataEmissao>2018-07-09</DataEmissao>
+        <ValoresNfse>
+            <BaseCalculo>0.01</BaseCalculo>
+            <Aliquota>0.05</Aliquota>
+            <ValorIss>0.0005</ValorIss>
+            <ValorLiquidoNfse>0</ValorLiquidoNfse>
+        </ValoresNfse>
+        <PrestadorServico>
+            <IdentificacaoPrestador>
+                <Cnpj>5893631000281</Cnpj>
+                <InscricaoMunicipal>14177687</InscricaoMunicipal>
+            </IdentificacaoPrestador>
+            <RazaoSocial>Michel Balthazar EPP</RazaoSocial>
+        </PrestadorServico>
+        <DeclaracaoPrestacaoServico>
+            <InfDeclaracaoPrestacaoServico>
+                <Rps>
+                    <IdentificacaoRps>
+                        <Numero>0</Numero>
+                        <Serie>IO</Serie>
+                        <Numero>Rps</Numero>
+                    </IdentificacaoRps>
+                    <DataEmissao>2018-07-09</DataEmissao>
+                    <Status>Normal</Status>
+                </Rps>
+                <Servico>
+                    <Valores>
+                        <ValorServicos>0.01</ValorServicos>
+                        <ValorDeducoes>0</ValorDeducoes>
+                        <ValorPis>0</ValorPis>
+                        <ValorCofins>0</ValorCofins>
+                        <ValorInss>0</ValorInss>
+                        <ValorIr>0</ValorIr>
+                        <ValorCsll>0</ValorCsll>
+                        <ValorIssRetido>0</ValorIssRetido>
+                    </Valores>
+                    <ItemListaServico>3093</ItemListaServico>
+                    <CodigoCnae />
+                    <Discriminacao>TESTE EMISSAO
+
+
+CONFORME LEI 12.741/2012 o valor aproximado dos tributos é R$0,00 (17,54%), FONTE: IBPT/empresometro.com.br (18.1.B)</Discriminacao>
+                    <CodigoMunicipio>3550308</CodigoMunicipio>
+                </Servico>
+                <Tomador>
+                    <IdentificacaoTomador>
+                        <Cnpj>191</Cnpj>
+                    </IdentificacaoTomador>
+                    <RazaoSocial>BANCO DO BRASIL SA</RazaoSocial>
+                </Tomador>
+            </InfDeclaracaoPrestacaoServico>
+        </DeclaracaoPrestacaoServico>
+    </InfNfse>
+</Nfse>
