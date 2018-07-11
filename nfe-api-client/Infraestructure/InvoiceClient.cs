@@ -29,7 +29,7 @@ namespace nfe.api.client.Infraestructure
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices";
 
-                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"));
+                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"), cancellationToken);
 
                 var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
 
@@ -136,9 +136,22 @@ namespace nfe.api.client.Infraestructure
             }
         }
 
-        public Task<Result<string>> SendEmailAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<string>> SendEmailAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = $"/v1/companies/{company_id}/serviceinvoices/{invoiceId}/sendemail";
+
+                var response = await _httpClient.PutAsync(url, null, cancellationToken);
+
+                var result = await HttpResponseConvert<string>.ResponseReadAsStringAsyncRetXml(response);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(ResultStatusCode.Error, ex.Message);
+            }
         }
     }
 }
