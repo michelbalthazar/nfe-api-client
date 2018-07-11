@@ -68,7 +68,6 @@ namespace Tests.IntegrationTests
             // Arrange
             var item = GenerateInvoiceToTest.Invoice();
 
-            // Act
             var resultPost = await _client.PostAsync(_companyIdSP, item);
 
             // waiting nfe.io's server change invoice's NotaFiscalFlowStatus property to ISSUED 
@@ -114,6 +113,28 @@ namespace Tests.IntegrationTests
 
             // Act
             var result = await _client.GetDocumentXmlAsync(_companyIdSP, _invoiceId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
+        }
+
+        [Trait("Integration Tests", "InvoiceClient - SendEmailAsync")]
+        [Fact(DisplayName = "SendEmailAsync when send a invoice valid return OK")]
+        public async Task SendEmailAsync_WhenSendValidJson_ReturnsOk()
+        {
+            // Arrange
+            var item = GenerateInvoiceToTest.Invoice();
+
+            var resultPost = await _client.PostAsync(_companyIdSP, item);
+
+            // waiting nfe.io's server change invoice's NotaFiscalFlowStatus property to ISSUED 
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+
+            resultPost.ValueAsSuccess.FlowStatus = NotaFiscalFlowStatus.Issued;
+
+            // Act
+            var result = await _client.SendEmailAsync(_companyIdSP, resultPost.ValueAsSuccess.Id);
 
             // Assert
             Assert.NotNull(result);
