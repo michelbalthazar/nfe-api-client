@@ -15,7 +15,7 @@ namespace Tests.UnitTests
                 {
                     FederalTaxNumber = 191,
                     Name = "BANCO DO BRASIL SA",
-                    Email = "email@remetente",
+                    Email = "email@remetente.com",
                     Address = new Address
                     {
                         Country = "BRA",
