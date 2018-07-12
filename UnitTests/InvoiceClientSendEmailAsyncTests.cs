@@ -1,7 +1,6 @@
 ﻿using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
-using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
