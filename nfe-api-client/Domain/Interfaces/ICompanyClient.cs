@@ -23,7 +23,7 @@ namespace nfe.api.client.Domain.Interfaces
         /// <param name="company_id_or_tax_number">ID da empresa ou Inscrição Federal (CNPJ)</param>
         /// <returns>Sucesso na requisição</returns>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        Task<LegalPerson> Get2Async(string company_id_or_tax_number, System.Threading.CancellationToken cancellationToken);
+        Task<LegalPerson> GetOneAsync(string company_id_or_tax_number, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>Atualizar uma empresa</summary>
         /// <param name="company_id">ID da empresa</param>
