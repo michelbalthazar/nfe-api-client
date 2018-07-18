@@ -129,6 +129,29 @@ namespace Tests.UnitTests
     #region class validate helper
     public static class ValidateHelper
     {
+        public static void ValidateCompany(LegalPerson expect, LegalPerson actual)
+        {
+            Assert.NotNull(expect);
+            Assert.NotNull(actual);
+            Assert.Equal(expect.Address.AdditionalInformation, actual.Address.AdditionalInformation);
+            Assert.Equal(expect.Address.City.Code, actual.Address.City.Code);
+            Assert.Equal(expect.Address.City.Name, actual.Address.City.Name);
+            Assert.Equal(expect.Address.Country, actual.Address.Country);
+            Assert.Equal(expect.Address.District, actual.Address.District);
+            Assert.Equal(expect.Address.Number, actual.Address.Number);
+            Assert.Equal(expect.Address.PostalCode, actual.Address.PostalCode);
+            Assert.Equal(expect.Address.State, actual.Address.State);
+            Assert.Equal(expect.Address.Street, actual.Address.Street);
+            Assert.Equal(expect.Name, actual.Name);
+            Assert.Equal(expect.Email, actual.Email);
+            Assert.Equal(expect.FederalTaxNumber, actual.FederalTaxNumber);
+            Assert.Equal(expect.LegalNature, actual.LegalNature);
+            Assert.Equal(expect.MunicipalTaxNumber, actual.MunicipalTaxNumber);
+            Assert.Equal(expect.SpecialTaxRegime, actual.SpecialTaxRegime);
+            Assert.Equal(expect.TaxRegime, actual.TaxRegime);
+            Assert.Equal(expect.TradeName, actual.TradeName);
+        }
+
         public static void ValidateInvoice(InvoiceResource expect, InvoiceResource actual)
         {
             Assert.NotNull(expect);
