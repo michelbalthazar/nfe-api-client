@@ -20,7 +20,7 @@ namespace Tests.UnitTests
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             _invoiceToAssert = InvoiceResource.FromJson(_invoiceResourceOk);
-            _invoiceToRequest = GenerateInvoiceToTest.Invoice();
+            _invoiceToRequest = GenerateObjectToTest.Invoice();
 
         }
 
