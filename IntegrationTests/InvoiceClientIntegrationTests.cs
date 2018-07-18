@@ -18,6 +18,7 @@ namespace Tests.IntegrationTests
         private readonly string _invoiceId;
         private readonly string _pathToSave;
         private readonly string _xmlToTest;
+        private readonly Invoice _item;
 
         public InvoiceClientIntegrationTests()
         {
@@ -30,6 +31,8 @@ namespace Tests.IntegrationTests
             _client = new InvoiceClient(apiKey);
 
             _xmlToTest = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
+
+            _item = GenerateObjectToTest.Invoice();
         }
 
         [Trait("Integration Tests", "InvoiceClient - PostAsync")]
@@ -37,10 +40,10 @@ namespace Tests.IntegrationTests
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // Arrange
-            var item = GenerateInvoiceToTest.Invoice();
+           
 
             // Act
-            var result = await _client.PostAsync(_companyIdSP, item);
+            var result = await _client.PostAsync(_companyIdSP, _item);
 
             // Assert
             Assert.NotNull(result);
@@ -66,9 +69,7 @@ namespace Tests.IntegrationTests
         public async Task DeleteAsync_WhenSendInvoiceIdValid_ReturnsOk()
         {
             // Arrange
-            var item = GenerateInvoiceToTest.Invoice();
-
-            var resultPost = await _client.PostAsync(_companyIdSP, item);
+            var resultPost = await _client.PostAsync(_companyIdSP, _item);
 
             // waiting nfe.io's server change invoice's NotaFiscalFlowStatus property to ISSUED 
             Thread.Sleep(TimeSpan.FromSeconds(5));
@@ -124,9 +125,7 @@ namespace Tests.IntegrationTests
         public async Task SendEmailAsync_WhenSendValidJson_ReturnsOk()
         {
             // Arrange
-            var item = GenerateInvoiceToTest.Invoice();
-
-            var resultPost = await _client.PostAsync(_companyIdSP, item);
+            var resultPost = await _client.PostAsync(_companyIdSP, _item);
 
             // waiting nfe.io's server change invoice's NotaFiscalFlowStatus property to ISSUED 
             Thread.Sleep(TimeSpan.FromSeconds(5));
