@@ -1,4 +1,6 @@
-﻿using ServiceInvoice.Domain.Common;
+﻿using Newtonsoft.Json.Linq;
+using ServiceInvoice.Domain.Common;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -29,13 +31,19 @@ namespace nfe.api.client.Infraestructure
                 return new Result<T>(ResultStatusCode.TimedOut, responseData ?? "timeout");
             }
             else
+            if (status == HttpStatusCode.Conflict)
+            {
+                var responseData = await response.Content.ReadAsStringAsync();
+                return new Result<T>(ResultStatusCode.Duplicated, responseData);
+            }
+            else
             if (status == HttpStatusCode.InternalServerError)
             {
                 var responseData = await response.Content.ReadAsStringAsync();
                 return new Result<T>(ResultStatusCode.Error, responseData);
             }
             else
-            if (status != HttpStatusCode.Accepted && status != HttpStatusCode.OK && status != HttpStatusCode.NoContent)
+            if (status != HttpStatusCode.Accepted && status != HttpStatusCode.OK && status != HttpStatusCode.NoContent && status != HttpStatusCode.Created)
             {
                 var responseData = await response?.Content.ReadAsStringAsync();
                 return new Result<T>(ResultStatusCode.Error, responseData ?? "The HTTP status code of the response was not expected");
@@ -56,6 +64,23 @@ namespace nfe.api.client.Infraestructure
             return string.IsNullOrWhiteSpace(responseResult) == false
                 ? Newtonsoft.Json.JsonConvert.DeserializeObject<T>(responseResult)
                 : default(T);
+        }
+
+        public static async Task<Result<T>> ResponseReadAsStringAsync(HttpResponseMessage response, bool ignoreRootElement)
+        {
+            var validate = await ResponseValidate(response);
+
+            if (validate.Status != ResultStatusCode.OK)
+                return validate;
+
+            var responseResult = await response.Content.ReadAsStringAsync();
+
+            if(string.IsNullOrWhiteSpace(responseResult))
+                return default(T);
+
+            return ignoreRootElement
+            ? JObject.Parse(responseResult).Properties().First().Value.ToObject<T>()
+            : JObject.Parse(responseResult).ToObject<T>();
         }
 
         public static async Task<Result<T>> ResponseReadAsStringAsyncRetXml(HttpResponseMessage response)
