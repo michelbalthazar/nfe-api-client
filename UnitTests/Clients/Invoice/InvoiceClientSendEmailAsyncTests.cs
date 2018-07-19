@@ -1,6 +1,7 @@
 ﻿using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -18,7 +19,7 @@ namespace Tests.UnitTests.Clients.Invoice
         public InvoiceClientSendEmailAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
-            _invoiceToAssert = InvoiceResource.FromJson(_invoiceResourceOk);
+            _invoiceToAssert = _invoiceResourceOk.JsonToObject<InvoiceResource>();
         }
 
         [Trait("Unit Tests", "InvoiceClient - SendEmailAsync")]

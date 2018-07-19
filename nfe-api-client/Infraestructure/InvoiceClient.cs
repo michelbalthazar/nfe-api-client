@@ -29,7 +29,7 @@ namespace nfe.api.client.Infraestructure
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices";
 
-                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"), cancellationToken);
+                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson<Invoice>(), Encoding.UTF8, "application/json"), cancellationToken);
 
                 var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
 

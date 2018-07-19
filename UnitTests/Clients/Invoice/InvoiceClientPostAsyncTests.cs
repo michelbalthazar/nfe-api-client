@@ -1,6 +1,7 @@
 using nfe.api.client.Infraestructure;
 using ServiceInvoice.Domain.Common;
 using ServiceInvoice.Domain.Models;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -19,7 +20,7 @@ namespace Tests.UnitTests.Clients.Invoice
         public InvoiceClientPostAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
-            _invoiceToAssert = InvoiceResource.FromJson(_invoiceResourceOk);
+            _invoiceToAssert = _invoiceResourceOk.JsonToObject<InvoiceResource>();
             _invoiceToRequest = GenerateObjectToTest.Invoice();
 
         }
@@ -29,7 +30,7 @@ namespace Tests.UnitTests.Clients.Invoice
         public async Task PostAsync_WhenSendValidJson_ReturnsOk()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, _invoiceToAssert.ToJson());
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Post, _invoiceToAssert.ToJson<InvoiceResource>());
 
             var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
 
