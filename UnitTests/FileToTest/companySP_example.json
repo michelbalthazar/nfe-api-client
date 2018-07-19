@@ -1,0 +1,34 @@
+{
+    "TradeName": "Michel Teste LTDA",
+    "MunicipalTaxNumber": "14177687",
+    "TaxRegime": 1,
+    "SpecialTaxRegime": -1,
+    "LegalNature": 2038,
+    "OpenningDate": "0001-01-01T00:00:00",
+    "EconomicActivities": [],
+    "CompanyRegistryNumber": 0,
+    "RegionalTaxNumber": 0,
+    "ISSRate": 0,
+    "ParentId": null,
+    "Id": "5b435dcc61beca0d3ca1f058",
+    "Name": "Michel Balthazar EPP",
+    "FederalTaxNumber": 5893631000281,
+    "Email": null,
+    "Address": {
+        "State": "SP",
+        "City": {
+            "Name": "São Paulo",
+            "Code": "3550308"
+        },
+        "District": "Pinheiros",
+        "AdditionalInformation": "",
+        "Street": "Rua Fradique Coutinho",
+        "Number": "701",
+        "PostalCode": "05416-000",
+        "Country": ""
+    },
+    "Type": 0,
+    "CreatedOn": "2018-07-09T10:06:20.7726206-03:00",
+    "modifiedOn": "2018-07-09T10:06:20.7726206-03:00",
+    "Status": 0
+}
