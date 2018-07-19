@@ -13,22 +13,15 @@ namespace Tests.IntegrationTests
         private readonly GetAppSettings _settingsApp;
         private readonly string _companyIdSP;
         private readonly CompanyClient _client;
-        private readonly string _invoiceId;
-        private readonly string _pathToSave;
-        private readonly string _xmlToTest;
         private readonly LegalPerson _company;
 
         public CompanyClientIntegrationTests()
         {
             _settingsApp = new GetAppSettings();
             _companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];
-            _invoiceId = _settingsApp.Configuration["Authentication:InvoiceId"];
-            _pathToSave = _settingsApp.Configuration["Authentication:Path"];
 
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
             _client = new CompanyClient(apiKey);
-
-            _xmlToTest = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
 
             _company = GenerateObjectToTest.Company();
         }
