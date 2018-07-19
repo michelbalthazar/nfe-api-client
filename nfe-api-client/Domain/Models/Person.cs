@@ -63,15 +63,6 @@ namespace ServiceInvoice.Domain.Models
             return (this.Type & PersonType.LegalEntity) == PersonType.LegalEntity;
         }
 
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public static Person FromJson(string data)
-        {
-            return JsonConvert.DeserializeObject<Person>(data);
-        }
         #endregion helpers methods
     }
 }

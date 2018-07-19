@@ -175,16 +175,6 @@ namespace ServiceInvoice.Domain.Models
         /// Data de emissão
         /// </summary>
         public DateTimeOffset IssuedOn { get; set; }
-
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public static InvoiceResource FromJson(string data)
-        {
-            return JsonConvert.DeserializeObject<InvoiceResource>(data);
-        }
     }
 
     public class InvoiceApproximateTaxes

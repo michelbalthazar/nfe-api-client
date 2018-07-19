@@ -32,15 +32,5 @@ namespace ServiceInvoice.Domain.Models
         /// Valor total do serviço prestado
         /// </summary>
         public double ServicesAmount { get; set; }
-
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public static Invoice FromJson(string data)
-        {
-            return JsonConvert.DeserializeObject<Invoice>(data);
-        }
     }
 }
