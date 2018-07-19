@@ -1,0 +1,36 @@
+{
+    "Companies": {
+        "TradeName": "BANCO DO BRASIL SA",
+        "MunicipalTaxNumber": "12345",
+        "TaxRegime": 3,
+        "SpecialTaxRegime": 0,
+        "LegalNature": 0,
+        "OpenningDate": "0001-01-01T00:00:00-02:00",
+        "EconomicActivities": [],
+        "CompanyRegistryNumber": 0,
+        "RegionalTaxNumber": 0,
+        "ISSRate": 0,
+        "ParentId": null,
+        "Id": "5b507c28c797a302505f2b31",
+        "Name": "BANCO DO BRASIL SA",
+        "FederalTaxNumber": 8765239000164,
+        "Email": "email@deTest.com.br",
+        "Address": {
+            "State": "DF",
+            "City": {
+                "Name": "Brasília",
+                "Code": "5300108"
+            },
+            "District": "Asa Sul",
+            "AdditionalInformation": "QUADRA 01 BLOCO G",
+            "Street": "Outros Quadra 1 Bloco G Lote 32",
+            "Number": "S/N",
+            "PostalCode": "70073901",
+            "Country": "BRA"
+        },
+        "Type": 0,
+        "CreatedOn": "2018-07-19T08:55:20.5484921-03:00",
+        "modifiedOn": "2018-07-19T08:55:20.5484921-03:00",
+        "Status": 0
+    }
+}
