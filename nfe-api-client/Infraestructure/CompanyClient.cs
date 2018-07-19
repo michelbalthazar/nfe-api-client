@@ -29,7 +29,7 @@ namespace nfe.api.client.Infraestructure
             {
                 var url = $"/v1/companies";
 
-                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson(), Encoding.UTF8, "application/json"), cancellationToken);
+                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson<LegalPerson>(), Encoding.UTF8, "application/json"), cancellationToken);
 
                 var result = await HttpResponseConvert<LegalPerson>.ResponseReadAsStringAsync(response, true);
 
@@ -41,9 +41,22 @@ namespace nfe.api.client.Infraestructure
             }
         }
 
-        public Task<Result<LegalPerson>> GetOneAsync(string company_id_or_tax_number, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<LegalPerson>> GetOneAsync(string company_id_or_tax_number, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = $"/v1/companies/{company_id_or_tax_number}";
+
+                var response = await _httpClient.GetAsync(url, cancellationToken);
+
+                var result = await HttpResponseConvert<LegalPerson>.ResponseReadAsStringAsync(response, true);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<LegalPerson>(ResultStatusCode.Error, ex.Message);
+            }
         }
 
         public Task<IEnumerable<Result<LegalPerson>>> GetAsync(CancellationToken cancellationToken = default(CancellationToken))
