@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tests.UnitTests
+namespace Tests.UnitTests.Clients.Invoice
 {
     public class InvoiceClientSendEmailAsyncTests
     {

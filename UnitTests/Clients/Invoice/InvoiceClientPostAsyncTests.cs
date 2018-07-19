@@ -8,13 +8,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tests.UnitTests
+namespace Tests.UnitTests.Clients.Invoice
 {
     public class InvoiceClientPostAsyncTests
     {
         private readonly string _invoiceResourceOk;
         private readonly InvoiceResource _invoiceToAssert;
-        private readonly Invoice _invoiceToRequest;
+        private readonly ServiceInvoice.Domain.Models.Invoice _invoiceToRequest;
 
         public InvoiceClientPostAsyncTests()
         {
