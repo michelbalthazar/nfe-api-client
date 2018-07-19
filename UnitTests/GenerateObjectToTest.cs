@@ -35,7 +35,7 @@ namespace Tests.UnitTests
         {
             return new LegalPerson
             {
-                FederalTaxNumber = 05893631000281,
+                FederalTaxNumber = 191,
                 Name = "BANCO DO BRASIL SA",
                 TradeName = "BANCO DO BRASIL SA",
                 MunicipalTaxNumber = "12345",
