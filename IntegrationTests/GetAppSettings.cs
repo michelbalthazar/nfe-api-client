@@ -11,7 +11,7 @@ namespace Tests.IntegrationTests
         {
             var builder = new ConfigurationBuilder()
                .AddJsonFile("appsettings.json", optional: true)
-               .AddJsonFile($"appsettings.development.json");
+               .AddJsonFile($"appsettings.development.json", optional: true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
