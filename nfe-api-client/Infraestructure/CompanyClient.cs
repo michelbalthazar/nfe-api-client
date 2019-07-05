@@ -69,9 +69,22 @@ namespace nfe.api.client.Infraestructure
             throw new NotImplementedException();
         }
 
-        public Task<Result<LegalPerson>> DeleteAsync(string company_id, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<LegalPerson>> DeleteAsync(string company_id, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            try
+            {
+                var url = $"/v1/companies/{company_id}";
+
+                var response = await _httpClient.DeleteAsync(url, cancellationToken);
+
+                var result = await HttpResponseConvert<LegalPerson>.ResponseReadAsStringAsync(response);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new Result<LegalPerson>(ResultStatusCode.Error, ex.Message);
+            }
         }
 
         public Task<Result<string>> CertificateUploadAsync(string company_id, byte[] file, string password, CancellationToken cancellationToken = default(CancellationToken))
