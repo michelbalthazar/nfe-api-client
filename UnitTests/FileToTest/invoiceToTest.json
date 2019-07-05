@@ -1,0 +1,23 @@
+{
+    "borrower": {
+        "federalTaxNumber": "28456297000113",
+        "name": "Teste de emissão",
+        "email": "email@teste.me",
+        "address": {
+            "city": {
+                "code": 3550308,
+                "name": "São Paulo"
+            },
+            "state": "SP",
+            "postalCode": "05416-011 ",
+            "district": "Pinheiros",
+            "street": "Rua Fradique Coutinho",
+            "number": "701",
+            "country": "BRA"
+        }
+    },
+    "issuedOn": "2018-11-30",
+    "cityServiceCode": "1627",
+    "description": "serviço de teste",
+    "servicesAmount": 3.33
+}
