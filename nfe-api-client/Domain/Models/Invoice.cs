@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 
 namespace ServiceInvoice.Domain.Models
 {
@@ -23,7 +23,7 @@ namespace ServiceInvoice.Domain.Models
         /// <summary>
         /// Atividades da Empresa (CNAE)
         /// </summary>
-        public string EconomicActivitieCode { get; set; }
+        public string CnaeCode { get; set; }
         /// <summary>
         /// Descrição do serviço prestado
         /// </summary>
@@ -32,5 +32,10 @@ namespace ServiceInvoice.Domain.Models
         /// Valor total do serviço prestado
         /// </summary>
         public double ServicesAmount { get; set; }
+
+        /// <summary>
+        /// Data de emissão (competência)
+        /// </summary>
+        public DateTime IssuedOn { get; set; }
     }
 }
