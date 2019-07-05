@@ -11,11 +11,13 @@ namespace Tests.UnitTests
                 CityServiceCode = "3093",
                 Description = "TESTE EMISSAO",
                 ServicesAmount = 0.01,
+                CnaeCode = "12315454",
+                IssuedOn = new System.DateTime(2018, 12, 31),
                 Borrower = new Person
                 {
                     FederalTaxNumber = 191,
                     Name = "BANCO DO BRASIL SA",
-                    Email = "email@remetente.com",
+                    Email = "email@deTest.com.br", // If set a valid email, this email will receive this one nfse's xml and pdf.
                     Address = new Address
                     {
                         Country = "BRA",
@@ -26,6 +28,34 @@ namespace Tests.UnitTests
                         District = "Asa Sul",
                         City = new City { Code = "5300108", Name = "Brasilia" },
                         State = "DF"
+                    },
+                },
+            };
+        }
+
+        public static Invoice InvoiceBH()
+        {
+            return new Invoice
+            {
+                CityServiceCode = "010100188",
+                Description = "Consultoria esportiva",
+                ServicesAmount = 0.01,
+                Borrower = new Person
+                {
+                    Type = PersonType.LegalPerson,
+                    FederalTaxNumber = 191,
+                    Name = "BANCO DO BRASIL SA",
+                    Email = "email@deTest.com.br", // If set a valid email, this email will receive this one nfse's xml and pdf.
+                    Address = new Address
+                    {
+                        Country = "BRA",
+                        PostalCode = "31980065",
+                        Street = "Rua ana pereina meneses",
+                        Number = "127",
+                        AdditionalInformation = "ap 314",
+                        District = "São gabriel",
+                        State = "MG",
+                        City = new City { Code = "32145", Name = "Belo Horizonte" }
                     },
                 },
             };
