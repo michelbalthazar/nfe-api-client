@@ -58,5 +58,22 @@ namespace Tests.IntegrationTests
             Assert.Equal(ResultStatusCode.OK, result.Status);
             ValidateHelper.ValidateCompany(_companyReturn.JsonToObject<LegalPerson>(), result.ValueAsSuccess);
         }
+
+        [Trait("Integration Tests", "CompanyClient - DeleteAsync")]
+        [Fact(DisplayName = "DeleteAsync when send a company valid return Deleted")]
+        public async Task DeleteAsync_WhenSendValidCompanyJson_ReturnsDeleted()
+        {
+            // Arrange
+            var company = await _client.PostAsync(_company);
+
+            // Act
+            var result = await _client.DeleteAsync(company.ValueAsSuccess.Id);
+
+            company = await _client.PostAsync(_company);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(ResultStatusCode.OK, result.Status);
+        }
     }
 }
