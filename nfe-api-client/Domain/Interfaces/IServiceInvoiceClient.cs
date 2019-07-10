@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ServiceInvoice.Domain.Interfaces
 {
-    interface IInvoiceClient
+    interface IServiceInvoiceClient
     {
         /// <summary>Emitir uma Nota Fiscal de Serviço (NFSE)</summary>
         /// <param name="company_id">ID da empresa</param>

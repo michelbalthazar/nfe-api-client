@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace nfe.api.client.Infraestructure
 {
-    public class InvoiceClient : IInvoiceClient
+    public class ServiceInvoiceClient : IServiceInvoiceClient
     {
         private readonly HttpClient _httpClient;
 
-        public InvoiceClient(string apiKey, HttpClient httpClient = null)
+        public ServiceInvoiceClient(string apiKey, HttpClient httpClient = null)
         {
             _httpClient = httpClient ?? new HttpClient();
             _httpClient.BaseAddress = new Uri("http://api.nfe.io");

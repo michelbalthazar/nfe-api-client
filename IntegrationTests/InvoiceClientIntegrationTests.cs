@@ -14,7 +14,7 @@ namespace Tests.IntegrationTests
     {
         private readonly GetAppSettings _settingsApp;
         private readonly string _companyIdSP;
-        private readonly InvoiceClient _client;
+        private readonly ServiceInvoiceClient _client;
         private readonly string _invoiceId;
         private readonly string _pathToSave;
         private readonly string _xmlToTest;
@@ -28,7 +28,7 @@ namespace Tests.IntegrationTests
             _pathToSave = _settingsApp.Configuration["Authentication:Path"];
 
             var apiKey = _settingsApp.Configuration["Authentication:ApiKey"];
-            _client = new InvoiceClient(apiKey);
+            _client = new ServiceInvoiceClient(apiKey);
 
             _xmlToTest = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
 

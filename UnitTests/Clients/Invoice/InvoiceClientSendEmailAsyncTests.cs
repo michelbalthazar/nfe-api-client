@@ -29,7 +29,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, "");
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -46,7 +46,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpGet(null);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp.Object);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp.Object);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, httpStatusCode: HttpStatusCode.BadRequest);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, httpStatusCode: HttpStatusCode.Unauthorized);
 
-            var invoiceClient = new InvoiceClient("InvalidApiKey", mockHttp);
+            var invoiceClient = new ServiceInvoiceClient("InvalidApiKey", mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, httpStatusCode: HttpStatusCode.RequestTimeout);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -115,7 +115,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, httpStatusCode: HttpStatusCode.InternalServerError);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -138,7 +138,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Put, httpStatusCode: status);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.SendEmailAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);

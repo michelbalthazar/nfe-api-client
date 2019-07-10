@@ -32,7 +32,7 @@ namespace Tests.UnitTests.Clients.Invoice
 
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, _pdfByteToTest);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -50,7 +50,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttpGet(null);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp.Object);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp.Object);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, new byte[0], httpStatusCode: HttpStatusCode.BadRequest);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, new byte[0], httpStatusCode: HttpStatusCode.Unauthorized);
 
-            var invoiceClient = new InvoiceClient("InvalidApiKey", mockHttp);
+            var invoiceClient = new ServiceInvoiceClient("InvalidApiKey", mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, new byte[0], httpStatusCode: HttpStatusCode.RequestTimeout);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -119,7 +119,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, new byte[0], httpStatusCode: HttpStatusCode.InternalServerError);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
@@ -142,7 +142,7 @@ namespace Tests.UnitTests.Clients.Invoice
             // Arrange
             var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, new byte[0], httpStatusCode: status);
 
-            var invoiceClient = new InvoiceClient(TestHelper.apiKey, mockHttp);
+            var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
             // Act
             var result = await invoiceClient.GetDocumentPdfBytesAsync(TestHelper.companyId, TestHelper.invoiceId, CancellationToken.None);
