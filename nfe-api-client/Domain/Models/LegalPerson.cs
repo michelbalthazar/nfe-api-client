@@ -13,6 +13,10 @@ namespace ServiceInvoice.Domain.Models
         /// </summary>
         public string TradeName { get; set; }
         /// <summary>
+        /// Inscrição Estadual do Substituto Tributário (IEST)
+        /// </summary>
+        public long? RegionalSTTaxNumber     { get; set; }
+        /// <summary>
         /// Número de Inscricação na Prefeitura (CCM) 
         /// </summary>
         public string MunicipalTaxNumber { get; set; }
@@ -23,11 +27,11 @@ namespace ServiceInvoice.Domain.Models
         /// <summary>
         /// Regime especial de tributação
         /// </summary>
-        public SpecialTaxRegime SpecialTaxRegime { get; set; }
+        public SpecialTaxRegime? SpecialTaxRegime { get; set; }
         /// <summary>
         /// Código da Natureza Jurídica
         /// </summary>
-        public LegalNature LegalNature { get; set; }
+        public LegalNature? LegalNature { get; set; }
         /// <summary>
         /// Data de abertura da empresa
         /// </summary>
@@ -43,7 +47,7 @@ namespace ServiceInvoice.Domain.Models
         /// <summary>
         /// Número de Inscricação na SEFAZ (IE)
         /// </summary>
-        public long RegionalTaxNumber { get; set; }
+        public long? RegionalTaxNumber { get; set; }
         /// <summary>
         /// Taxa da Aliquota do ISS (Simples Nacional)
         /// </summary>
@@ -53,10 +57,13 @@ namespace ServiceInvoice.Domain.Models
     public class EconomicActivities
     {
         /// <summary>
-        /// Tipo do CNAE (Principal ou Secundário)
+        /// Tipo da Atividade da Empresa
+        /// <remarks>
+        ///     1 - Principal (Main)
+        ///     2 - Secundário (Secondary)
+        /// </remarks>
         /// </summary>
-        public string Type { get; set; }
-
+        public EconomicActivityType Type { get; set; }
         /// <summary>
         /// Código do CNAE
         /// </summary>
