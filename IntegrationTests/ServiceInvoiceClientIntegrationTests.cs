@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Tests.IntegrationTests
 {
-    public class InvoiceClientIntegrationTests
+    public class ServiceInvoiceClientIntegrationTests
     {
         private readonly GetAppSettings _settingsApp;
         private readonly string _companyIdSP;
@@ -20,7 +20,7 @@ namespace Tests.IntegrationTests
         private readonly string _xmlToTest;
         private readonly ServiceInvoice.Domain.Models.ServiceInvoice _item;
 
-        public InvoiceClientIntegrationTests()
+        public ServiceInvoiceClientIntegrationTests()
         {
             _settingsApp = new GetAppSettings();
             _companyIdSP = _settingsApp.Configuration["Authentication:CompanyId"];

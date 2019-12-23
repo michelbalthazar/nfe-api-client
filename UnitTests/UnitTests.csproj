@@ -22,4 +22,8 @@
     <ProjectReference Include="..\nfe-api-client\ServiceInvoice.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Clients\Product\" />
+  </ItemGroup>
+
 </Project>

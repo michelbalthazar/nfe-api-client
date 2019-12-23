@@ -9,15 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tests.UnitTests
+namespace Tests.UnitTests.Clients.Service
 {
-    public class InvoiceClientGetDocumentXmlAsyncTests
+    public class ServiceInvoiceClientGetDocumentXmlAsyncTests
     {
         private readonly string _invoiceResourceOk;
         private readonly string _xmlToTest;
         private readonly ServiceInvoiceResource _invoiceToAssert;
 
-        public InvoiceClientGetDocumentXmlAsyncTests()
+        public ServiceInvoiceClientGetDocumentXmlAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             //_pdfByteToTest = File.ReadAllBytes(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");

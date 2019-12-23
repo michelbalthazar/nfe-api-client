@@ -9,14 +9,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tests.UnitTests.Clients.Invoice
+namespace Tests.UnitTests.Clients.Service
 {
-    public class InvoiceClientDeleteAsyncTests
+    public class ServiceInvoiceClientDeleteAsyncTests
     {
         private readonly string _invoiceResourceOk;
         private readonly ServiceInvoiceResource _invoiceToAssert;
 
-        public InvoiceClientDeleteAsyncTests()
+        public ServiceInvoiceClientDeleteAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             _invoiceToAssert = _invoiceResourceOk.JsonToObject<ServiceInvoiceResource>();

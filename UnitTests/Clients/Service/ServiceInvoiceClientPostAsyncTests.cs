@@ -9,15 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tests.UnitTests.Clients.Invoice
+namespace Tests.UnitTests.Clients.Service
 {
-    public class InvoiceClientPostAsyncTests
+    public class ServiceInvoiceClientPostAsyncTests
     {
         private readonly string _invoiceResourceOk;
         private readonly ServiceInvoiceResource _invoiceToAssert;
         private readonly ServiceInvoice.Domain.Models.ServiceInvoice _invoiceToRequest;
 
-        public InvoiceClientPostAsyncTests()
+        public ServiceInvoiceClientPostAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             _invoiceToAssert = _invoiceResourceOk.JsonToObject<ServiceInvoiceResource>();
