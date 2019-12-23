@@ -374,4 +374,222 @@ namespace ServiceInvoice.Domain.Models
         [Display(Name = "399-9 Associação Privada")]
         AssociacaoPrivada = 3999
     }
+
+    #region Product
+
+    /// <summary>
+    /// Status da nota fiscal
+    /// </summary>
+    public enum ProductInvoiceStatus
+    {
+        Error = -1,
+        None = 0,
+        Created = 1,
+        Processing = 2,
+        Issued = 3,
+        Cancelled = 4
+    }
+
+    /// <summary>
+    /// Tipo de Operação (tpNF)
+    /// </summary>
+    public enum OperationType
+    {
+        /// <summary>
+        /// 1 - Entrada
+        /// </summary>
+        Incoming = 1,
+
+        /// <summary>
+        /// 0 - Saida
+        /// </summary>
+        Outgoing = 0
+    }
+
+    /// <summary>
+    /// Identificação do Ambiente (tpAmb)
+    /// </summary>
+    public enum EnvironmentType
+    {
+        None = 0,
+
+        /// <summary>
+        /// 1 - Produção
+        /// </summary>
+        Production = 1,
+
+        /// <summary>
+        /// 2 - Homologação (testes)
+        /// </summary>
+        Test = 2
+    }
+
+
+    /// <summary>
+    /// Finalidade de emissão da NF-e (finNFe)
+    /// </summary>
+    public enum PurposeType
+    {
+        /// <summary>
+        /// 4 - Devolução
+        /// </summary>
+        Devolution = 4,
+
+        /// <summary>
+        /// 3 - Ajuste
+        /// </summary>
+        Adjustment = 3,
+
+        /// <summary>
+        /// 2 - Complementar
+        /// </summary>
+        Complement = 2,
+
+        /// <summary>
+        /// 1 - Normal
+        /// </summary>
+        Normal = 1,
+
+        /// <summary>
+        /// 0 - None
+        /// </summary>
+        None = 0,
+    }
+
+    public enum EconomicActivityType
+    {
+        Main = 1,
+        Secondary = 2
+    }
+
+    public enum ReceiverStateTaxIndicator
+    {
+        /// <summary>
+        /// 0=Nenhum
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// 1=Contribuinte ICMS (informar a IE do destinatário);
+        /// </summary>
+        TaxPayer = 1,
+
+        /// <summary>
+        /// 2=Contribuinte isento de Inscrição no cadastro de Contribuintes;
+        /// </summary>
+        Exempt = 2,
+
+        /// <summary>
+        /// 9=Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS.
+        /// </summary>
+        NonTaxPayer = 9
+    }
+
+    public enum PaymentMethod
+    {
+        /// <summary>
+        /// 01 - Dinheiro
+        /// </summary>
+        Cash = 01,
+
+        /// <summary>
+        /// 02 - Cheque
+        /// </summary>
+        Cheque = 02,
+
+        /// <summary>
+        /// 03 - Cartão de Crédito
+        /// </summary>
+        CreditCard = 03,
+
+        /// <summary>
+        /// 04 - Cartão de Débito
+        /// </summary>
+        DebitCard = 04,
+
+        /// <summary>
+        /// 05 - Crédito Loja
+        /// </summary>
+        StoreCredict = 05,
+
+        /// <summary>
+        /// 10 - Vale Alimentação
+        ///</summary> 
+        FoodVouchers = 10,
+
+        /// <summary>
+        /// 11 - Vale Refeição
+        /// </summary>
+        MealVouchers = 11,
+
+        /// <summary>
+        /// 12 - Vale Presente
+        /// </summary>
+        GiftVouchers = 12,
+
+        /// <summary>
+        /// 13 - Vale Combustível
+        /// </summary>
+        FuelVouchers = 13,
+
+        /// <summary>
+        /// 15 - Boleto Bancário
+        /// </summary>
+        BankBill = 15,
+
+        /// <summary>
+        /// 90 - Sem Pagamento
+        /// </summary>
+        WithoutPayment = 90,
+
+        /// <summary>
+        /// 99 - Outros
+        /// </summary>
+        Others = 99,
+    }
+
+    public enum FlagCard
+    {
+        Visa = 01,
+        Mastercard = 02,
+        AmericanExpress = 03,
+        Sorocred = 04,
+        Other = 99
+    }
+
+    /// <summary>
+    ///     1 - Pagamento integrado com o sistema de automação da empresa(Ex.: equipamento TEF, Comércio Eletrônico)
+    ///     2 - Pagamento não integrado com o sistema de automação da empresa(Ex.: equipamento POS);
+    ///     
+    /// </summary>
+    public enum IntegrationPaymentType
+    {
+        Integrated = 1,
+        NotIntegrated = 2
+    }
+
+    public enum ShippingModality
+    {
+        /// <summary>
+        /// 0=Por conta do emitente;
+        /// </summary>
+        ByIssuer = 0,
+
+        /// <summary>
+        /// 1=Por conta do destinatário/remetente;
+        /// </summary>
+        ByReceiver = 1,
+
+        /// <summary>
+        /// 2=Por conta de terceiros;
+        /// </summary>
+        ByThirdParties = 2,
+
+        /// <summary>
+        /// 9=Sem frete. (V2.0)
+        /// </summary>
+        Free = 9,
+    }
+
+    #endregion Product
 }
