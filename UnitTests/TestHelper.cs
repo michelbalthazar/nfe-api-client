@@ -152,7 +152,7 @@ namespace Tests.UnitTests
             Assert.Equal(expect.TradeName, actual.TradeName);
         }
 
-        public static void ValidateInvoice(InvoiceResource expect, InvoiceResource actual)
+        public static void ValidateInvoice(ServiceInvoiceResource expect, ServiceInvoiceResource actual)
         {
             Assert.NotNull(expect);
             Assert.NotNull(actual);

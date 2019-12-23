@@ -15,14 +15,14 @@ namespace Tests.UnitTests
     {
         private readonly string _invoiceResourceOk;
         private readonly string _xmlToTest;
-        private readonly InvoiceResource _invoiceToAssert;
+        private readonly ServiceInvoiceResource _invoiceToAssert;
 
         public InvoiceClientGetDocumentXmlAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
             //_pdfByteToTest = File.ReadAllBytes(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
             _xmlToTest = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.xml");
-            _invoiceToAssert = _invoiceResourceOk.JsonToObject<InvoiceResource>();
+            _invoiceToAssert = _invoiceResourceOk.JsonToObject<ServiceInvoiceResource>();
         }
 
         [Trait("Unit Tests", "InvoiceClient - GetDocumentXmlAsync")]

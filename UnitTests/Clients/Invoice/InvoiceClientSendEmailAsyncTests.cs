@@ -14,12 +14,12 @@ namespace Tests.UnitTests.Clients.Invoice
     public class InvoiceClientSendEmailAsyncTests
     {
         private readonly string _invoiceResourceOk;
-        private readonly InvoiceResource _invoiceToAssert;
+        private readonly ServiceInvoiceResource _invoiceToAssert;
 
         public InvoiceClientSendEmailAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
-            _invoiceToAssert = _invoiceResourceOk.JsonToObject<InvoiceResource>();
+            _invoiceToAssert = _invoiceResourceOk.JsonToObject<ServiceInvoiceResource>();
         }
 
         [Trait("Unit Tests", "InvoiceClient - SendEmailAsync")]

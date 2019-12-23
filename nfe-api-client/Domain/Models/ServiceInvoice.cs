@@ -2,7 +2,7 @@
 
 namespace ServiceInvoice.Domain.Models
 {
-    public class Invoice
+    public class ServiceInvoice
     {
         /// <summary>
         /// Prestador dos serviços

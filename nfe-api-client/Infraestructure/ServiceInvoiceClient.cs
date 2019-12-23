@@ -23,25 +23,25 @@ namespace nfe.api.client.Infraestructure
             _httpClient.DefaultRequestHeaders.Add("Authorization", apiKey);
         }
 
-        public async Task<Result<InvoiceResource>> PostAsync(string company_id, Invoice item, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<ServiceInvoiceResource>> PostAsync(string company_id, ServiceInvoice.Domain.Models.ServiceInvoice item, CancellationToken cancellationToken = default(CancellationToken))
         {
             try
             {
                 var url = $"/v1/companies/{company_id}/serviceinvoices";
 
-                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson<Invoice>(), Encoding.UTF8, "application/json"), cancellationToken);
+                var response = await _httpClient.PostAsync(url, new StringContent(item.ToJson<ServiceInvoice.Domain.Models.ServiceInvoice>(), Encoding.UTF8, "application/json"), cancellationToken);
 
-                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
+                var result = await HttpResponseConvert<ServiceInvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
             catch (Exception ex)
             {
-                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
+                return new Result<ServiceInvoiceResource>(ResultStatusCode.Error, ex.Message);
             }
         }
 
-        public async Task<Result<InvoiceResource>> GetOneAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<ServiceInvoiceResource>> GetOneAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             try
             {
@@ -49,22 +49,22 @@ namespace nfe.api.client.Infraestructure
 
                 var response = await _httpClient.GetAsync(url, cancellationToken);
 
-                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
+                var result = await HttpResponseConvert<ServiceInvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
             catch (Exception ex)
             {
-                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
+                return new Result<ServiceInvoiceResource>(ResultStatusCode.Error, ex.Message);
             }
         }
         
-        public Task<Result<InvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<Result<ServiceInvoiceResource>> GetAsync(string company_id, int? pageCount, int? pageIndex, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Result<InvoiceResource>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Result<ServiceInvoiceResource>> DeleteAsync(string company_id, string invoiceId, CancellationToken cancellationToken = default(CancellationToken))
         {
             try
             {
@@ -72,13 +72,13 @@ namespace nfe.api.client.Infraestructure
 
                 var response = await _httpClient.DeleteAsync(url, cancellationToken);
 
-                var result = await HttpResponseConvert<InvoiceResource>.ResponseReadAsStringAsync(response);
+                var result = await HttpResponseConvert<ServiceInvoiceResource>.ResponseReadAsStringAsync(response);
 
                 return result;
             }
             catch (Exception ex)
             {
-                return new Result<InvoiceResource>(ResultStatusCode.Error, ex.Message);
+                return new Result<ServiceInvoiceResource>(ResultStatusCode.Error, ex.Message);
             }
         }
 

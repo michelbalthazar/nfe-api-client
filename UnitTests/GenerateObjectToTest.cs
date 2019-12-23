@@ -4,9 +4,9 @@ namespace Tests.UnitTests
 {
     public static class GenerateObjectToTest
     {
-        public static Invoice Invoice()
+        public static ServiceInvoice Invoice()
         {
-            return new Invoice
+            return new ServiceInvoice.Domain.Models.ServiceInvoice
             {
                 CityServiceCode = "3093",
                 Description = "TESTE EMISSAO",
@@ -33,9 +33,9 @@ namespace Tests.UnitTests
             };
         }
 
-        public static Invoice InvoiceBH()
+        public static ServiceInvoice InvoiceBH()
         {
-            return new Invoice
+            return new ServiceInvoice.Domain.Models.ServiceInvoice
             {
                 CityServiceCode = "010100188",
                 Description = "Consultoria esportiva",

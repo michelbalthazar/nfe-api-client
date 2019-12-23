@@ -9,11 +9,11 @@ namespace System
     public static class StringExtension
     {
         // It is not OK yet!!
-        public static InvoiceResource XmlToInvoiceResource(this string xml)
+        public static ServiceInvoiceResource XmlToInvoiceResource(this string xml)
         {
-            var serializer = new XmlSerializer(typeof(InvoiceResource));
+            var serializer = new XmlSerializer(typeof(ServiceInvoiceResource));
             var rdr = new StringReader(xml);
-            return (InvoiceResource)serializer.Deserialize(rdr);
+            return (ServiceInvoiceResource)serializer.Deserialize(rdr);
         }
 
         public static byte[] GetBytesFromString(this string value)

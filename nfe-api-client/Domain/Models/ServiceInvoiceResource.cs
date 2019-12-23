@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ServiceInvoice.Domain.Models
 {
-    public class InvoiceResource
+    public class ServiceInvoiceResource
     {
         /// <summary>
         /// Prestador dos serviços

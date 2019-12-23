@@ -18,7 +18,7 @@ namespace Tests.IntegrationTests
         private readonly string _invoiceId;
         private readonly string _pathToSave;
         private readonly string _xmlToTest;
-        private readonly Invoice _item;
+        private readonly ServiceInvoice.Domain.Models.ServiceInvoice _item;
 
         public InvoiceClientIntegrationTests()
         {

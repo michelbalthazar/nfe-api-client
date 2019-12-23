@@ -14,12 +14,12 @@ namespace Tests.UnitTests.Clients.Invoice
     public class InvoiceClientGetAsyncTests
     {
         private readonly string _invoiceResourceOk;
-        private readonly InvoiceResource _invoiceToAssert;
+        private readonly ServiceInvoiceResource _invoiceToAssert;
 
         public InvoiceClientGetAsyncTests()
         {
             _invoiceResourceOk = File.ReadAllText(@"..\..\..\..\UnitTests\FileToTest\invoiceResource-Example.json");
-            _invoiceToAssert = _invoiceResourceOk.JsonToObject<InvoiceResource>();
+            _invoiceToAssert = _invoiceResourceOk.JsonToObject<ServiceInvoiceResource>();
         }
 
         [Trait("Unit Tests", "InvoiceClient - GetOneAsync")]
@@ -27,7 +27,7 @@ namespace Tests.UnitTests.Clients.Invoice
         public async Task GetOneAsync_WhenInvoiceIdIsValid_ReturnsOk()
         {
             // Arrange
-            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, _invoiceToAssert.ToJson<InvoiceResource>());
+            var mockHttp = TestHelper.CreateMockHttp(HttpMethod.Get, _invoiceToAssert.ToJson<ServiceInvoiceResource>());
 
             var invoiceClient = new ServiceInvoiceClient(TestHelper.apiKey, mockHttp);
 
