@@ -1,4 +1,6 @@
-﻿namespace nfe.api.client.Domain.Models.Product
+﻿using System.Collections.Generic;
+
+namespace nfe.api.client.Domain.Models.Product
 {
     public class Billing
     {

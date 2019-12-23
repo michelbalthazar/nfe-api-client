@@ -2,7 +2,7 @@
 
 namespace nfe.api.client.Domain.Models.Product
 {
-    class PaymentDetail
+    public class PaymentDetail
     {
         /// <summary>
         /// Forma de pagamento (tPag)

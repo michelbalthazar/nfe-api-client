@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Models\Product\" />
+    <Folder Include="Domain\Models\Resource\" />
   </ItemGroup>
 
 </Project>

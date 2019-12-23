@@ -1,4 +1,5 @@
-﻿]
+﻿using System.Collections.Generic;
+
 namespace nfe.api.client.Domain.Models.Product
 {
     public class Payment
@@ -7,7 +8,7 @@ namespace nfe.api.client.Domain.Models.Product
         /// YA01a - Grupo Detalhamento da Forma de Pagamento (detPag)
         /// VERSÃO 4.00
         /// </summary>
-        public List<PaymentDetailResource> PaymentDetail { get; set; }
+        public List<PaymentDetail> PaymentDetail { get; set; }
 
         /// <summary>
         /// Valor do troco (vTroco)
