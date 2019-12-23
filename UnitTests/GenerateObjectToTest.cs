@@ -4,7 +4,7 @@ namespace Tests.UnitTests
 {
     public static class GenerateObjectToTest
     {
-        public static ServiceInvoice Invoice()
+        public static ServiceInvoice.Domain.Models.ServiceInvoice Invoice()
         {
             return new ServiceInvoice.Domain.Models.ServiceInvoice
             {
@@ -33,7 +33,7 @@ namespace Tests.UnitTests
             };
         }
 
-        public static ServiceInvoice InvoiceBH()
+        public static ServiceInvoice.Domain.Models.ServiceInvoice InvoiceBH()
         {
             return new ServiceInvoice.Domain.Models.ServiceInvoice
             {
