@@ -591,5 +591,272 @@ namespace ServiceInvoice.Domain.Models
         Free = 9,
     }
 
+    public enum StateCode
+    {
+        RO = 11,
+        AC = 12,
+        AM = 13,
+        RR = 14,
+        PA = 15,
+        AP = 16,
+        TO = 17,
+        MA = 21,
+        PI = 22,
+        CE = 23,
+        RN = 24,
+        PB = 25,
+        PE = 26,
+        AL = 27,
+        SE = 28,
+        BA = 29,
+        MG = 31,
+        ES = 32,
+        RJ = 33,
+        SP = 35,
+        PR = 41,
+        SC = 42,
+        RS = 43,
+        MS = 50,
+        MT = 51,
+        GO = 52,
+        DF = 53,
+
+        /// <summary>
+        /// 99 - Exterior
+        ///</summary> 
+        EX = 99,
+        NA = 0
+    }
+
+    /// <summary>
+    /// Tipo Transporte Internacional
+    /// </summary>
+    public enum InternationalTransportType
+    {
+        /// <summary>
+        /// 1=None;
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// 1=Marítima;
+        /// </summary>
+        Maritime = 1,
+
+        /// <summary>
+        /// 2=Fluvial;
+        /// </summary>
+        River = 2,
+
+        /// <summary>
+        /// 3=Lacustre;
+        /// </summary>
+        Lake = 3,
+
+        /// <summary>
+        ///  4=Aérea;
+        /// </summary>
+        Airline = 4,
+
+        /// <summary>
+        /// 5=Postal
+        /// </summary>
+        Postal = 5,
+
+        /// <summary>
+        /// 6=Ferroviária;
+        /// </summary>
+        Railway = 6,
+
+        /// <summary>
+        /// 7=Rodoviária;
+        /// </summary>
+        Highway = 7,
+
+        /// <summary>
+        ///  8=Conduto / Rede Transmissão;
+        /// </summary>
+        Network = 8,
+
+        /// <summary>
+        /// 9=Meios Próprios;
+        /// </summary>
+        Own = 9,
+
+        /// <summary>
+        /// 10=Entrada / Saída ficta;
+        /// </summary>
+        Ficta = 10,
+
+        /// <summary>
+        /// 11=Courier
+        /// </summary>
+        Courier = 11,
+
+        /// <summary>
+        /// 12=Handcarry.
+        /// </summary>
+        Handcarry = 12
+    }
+
+
+    /// <summary>
+    ///   Tipo de Intermediação
+    /// </summary>
+    public enum IntermediationType
+    {
+        /// <summary>
+        /// 1=None;
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        ///  1=Importação por conta própria;
+        /// </summary>
+        ByOwn = 1,
+
+        /// <summary>
+        ///  2=Importação por conta e ordem;
+        /// </summary>
+        ImportOnBehalf = 2,
+
+        /// <summary>
+        ///  3=Importação por encomenda;
+        /// </summary>
+        ByOrder = 3
+    }
+
+    /// <summary>
+    /// Campo será preenchido quando o campo anterior estiver
+    /// preenchido.Informar o motivo da desoneração:
+    /// </summary>
+    public enum ExemptReason
+    {
+        /// <summary>
+        /// 3=Uso na agropecuária
+        /// </summary>
+        Agriculture = 3,
+
+        /// <summary>
+        /// 9=Outros
+        /// </summary>
+        Others = 9,
+
+        /// <summary>
+        /// 12=Órgão de fomento e desenvolvimento agropecuário
+        /// </summary>
+        DevelopmentEntities = 12
+    }
+
+    /// <summary>
+    /// Indicador de Presença (indPres )
+    /// </summary>
+    public enum ConsumerPresenceType
+    {
+        /// <summary>
+        /// 0 - Não se aplica (ex: nf complementar ou ajuste)
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// 1 - Operação presencial
+        /// </summary>
+        Presence = 1,
+
+        /// <summary>
+        /// 2 - Internet, operação não presencial
+        /// </summary>
+        Internet = 2,
+
+        /// <summary>
+        /// 3 - Teleatendimento, operação não presencial
+        /// </summary>
+        Telephone = 3,
+
+        /// <summary>
+        /// 4 - NFC-e em operação com entrega a domicílio
+        /// </summary>
+        Delivery = 4,
+
+        /// <summary>
+        /// 9 - Outros, operação não presencial
+        /// </summary>
+        OthersNonPresenceOperation = 9,
+    }
+
+    /// <summary>
+    /// Indica operação com Consumidor final (indFinal)
+    /// </summary>
+    public enum ConsumerType
+    {
+        /// <summary>
+        /// Normal (Padrão)
+        /// </summary>
+        Normal = 1,
+
+        /// <summary>
+        /// Consumidor final
+        /// </summary>
+        FinalConsumer = 0
+    }
+
+    public enum PrintType
+    {
+        /// <summary>
+        /// 0 - Sem geração de DANFE
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// 1 - DANFE Normal Retrato
+        /// </summary>
+        NFeNormalPortrait = 1,
+
+        /// <summary>
+        /// 1 - DANFE Normal Paisagem
+        /// </summary>
+        NFeNormalLandscape = 2,
+
+        /// <summary>
+        /// 3 - DANFE Simplificado
+        /// </summary>
+        NFeSimplified = 3,
+
+        /// <summary>
+        /// 4 - DANFE NFC-e
+        /// </summary>
+        DANFE_NFC_E = 4,
+
+        /// <summary>
+        /// 5 - DANFE NFC-e em mensagem eletrônica
+        /// </summary>
+        DANFE_NFC_E_MSG_ELETRONICA = 5,
+    }
+
+    /// <summary>
+    /// Identificador de local de destino da operação (idDest)
+    /// </summary>
+    public enum Destination
+    {
+        /// <summary>
+        /// 3 - Operação com exterior
+        /// </summary>
+        International_Operation = 3,
+
+        /// <summary>
+        /// 2 - Operação interestadual
+        /// </summary>
+        Interstate_Operation = 2,
+
+        /// <summary>
+        /// 1 - Operação interna
+        /// </summary>
+        Internal_Operation = 1,
+
+        /// <summary>
+        /// 0 - Nenhum
+        /// </summary>
+        None = 0
+    }
     #endregion Product
 }
